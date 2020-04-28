@@ -38,5 +38,9 @@ export default {
       }
     })
     return response.data
+  },
+  async getArticleById (article) {
+    const response = await API.get(`/article/${article}`)
+    return response.data
   }
 }

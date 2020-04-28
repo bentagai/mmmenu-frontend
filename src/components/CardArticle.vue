@@ -8,7 +8,7 @@
     <v-card-subtitle>{{ card.subtitle }}</v-card-subtitle>
     <v-card-text>
       <p class="title text--primary font-weight-regular">
-        {{ card.created_at }}
+        {{ formatDate }}
       </p>
     </v-card-text>
     <v-card-actions>
@@ -35,15 +35,20 @@
 <script>
 import Api from "../services/Api"
 export default {
+  computed: {
+    formatDate() {
+      let date = this.card.created_at
+      return date.split('T')[0]
+    }
+  },
   props: {
-    card: Object
+    card: Object,
   },
   methods: {
     erase(article) {
       Api.deleteArticleById(article)
         .then(() => {
-          alert('artículo eliminado')
-          this.$emit("deleteArticle", article)
+          this.$emit("deleteArticle")
         })
     }
   }

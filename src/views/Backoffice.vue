@@ -2,14 +2,19 @@
   <div>
     <v-app>
       <v-btn @click="ToCreate">Crear artículo</v-btn>
-      <Card v-for="(article, idx) in articles" :key="idx" :card="article" />
+      <CardArticle v-for="(article, idx) in articles" 
+        :key="idx" 
+        :card="article" 
+        @deleteArticle="deleteArticle(idx)" 
+        @click="ToArticle(article._id)"
+      />
     </v-app>
   </div>
 </template>
 
 <script>
 import Api from "../services/Api"
-import Card from "../components/CardArticle"
+import CardArticle from "../components/CardArticle"
 
 export default {
   data() {
@@ -18,11 +23,18 @@ export default {
     }
   },
   components: {
-    Card
+    CardArticle
   },
   methods: {
     ToCreate() {
       this.$router.push('/create')
+    },
+    ToArticle(id) {
+      this.$router.push('/article')
+      this.$root.$emit('readArticle', id)
+    },
+    deleteArticle(idx) {
+      this.articles.splice(idx, 1)
     }
   },
   mounted() {

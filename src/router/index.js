@@ -5,6 +5,7 @@ import Backoffice from '../views/Backoffice.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import CreateArticle from '../views/CreateArticle.vue'
+import Article from '../views/Article.vue'
 
 Vue.use(VueRouter)
 
@@ -13,7 +14,8 @@ const routes = [
   { path: '/create', name: 'Create', component: CreateArticle },
   { path: '/', name: 'Home', component: Home },
   { path: '/login', name: 'Login', component: Login },
-  { path: '/signup', name: 'Signup', component: Signup }
+  { path: '/signup', name: 'Signup', component: Signup },
+  { path: '/article', name: 'Article', component: Article }
 ]
 
 const router = new VueRouter({
