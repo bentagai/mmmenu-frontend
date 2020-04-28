@@ -1,37 +1,42 @@
 <template>
   <div>
-    <v-card outlined tile width="100%" class="grey lighten-5">
-      <v-card-title class="title font-weight-regular d-flex justify-center">
-        Crear artículo
-      </v-card-title>
-      <v-card-text>
-        <v-form>
-          <v-text-field
-            counter
-            label="Title"
-            v-model="title"
-            :rules="titleRule"
-          ></v-text-field>
-          <v-text-field
-            counter
-            label="Subtitle"
-            v-model="subtitle"
-            :rules="subtitleRule"
-          ></v-text-field>
-          <v-textarea
-            counter
-            label="Text"
-            v-model="text"
-            :rules="textRule"
-          >
-          </v-textarea>
-        </v-form>
-      </v-card-text>
-      <v-card-actions class="d-block">
-        <div d-block><v-btn depressed tile small color="#3B2929" block @click="create"><span class="white--text">Publicar</span></v-btn></div>
-        <div d-block class="mt-1"><v-btn depressed tile small color="#3B2929" block @click="toAdmin"><span class="white--text">Ver</span></v-btn></div>
-      </v-card-actions>
-    </v-card>
+    <div class="card mt-2">
+      <v-card outlined tile width="100%" class="grey lighten-5">
+        <v-card-title 
+          class="title font-weight-regular d-flex justify-center"
+
+        >
+          Crear artículo
+        </v-card-title>
+        <v-card-text>
+          <v-form>
+            <v-text-field
+              counter
+              label="Title"
+              v-model="title"
+              :rules="titleRule"
+            ></v-text-field>
+            <v-text-field
+              counter
+              label="Subtitle"
+              v-model="subtitle"
+              :rules="subtitleRule"
+            ></v-text-field>
+            <v-textarea
+              counter
+              label="Text"
+              v-model="text"
+              :rules="textRule"
+            >
+            </v-textarea>
+          </v-form>
+        </v-card-text>
+        <v-card-actions class="d-block">
+          <div d-block><v-btn depressed tile small color="#3B2929" block @click="create"><span class="white--text">Publicar</span></v-btn></div>
+          <div d-block class="mt-1"><v-btn depressed tile small color="#3B2929" block @click="toAdmin"><span class="white--text">Ver</span></v-btn></div>
+        </v-card-actions>
+      </v-card>
+    </div>
   </div>
 </template>
 
@@ -75,4 +80,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.card {
+  width: 75%;
+  margin: 0 auto;
+  padding: 0 6px 0 6px;
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    width: 100%;
+  }
+}
 </style>

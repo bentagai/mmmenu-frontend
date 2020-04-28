@@ -1,16 +1,11 @@
 <template>
-  <div>
-    <v-card
-      class="card"
-      outlined 
-      tile 
-      color="#fafafa"
-    >
-      <v-card-title>{{ article.title }}</v-card-title>
-      <v-card-subtitle>{{ article.subtitle }}</v-card-subtitle>
-      <!-- <v-card-text>{{ article.text }}</v-card-text> -->
-    </v-card>
-    <div class="text"><p>{{ article.text }}</p></div>
+  <div class="main">
+    <div class="card">
+      <h1 class="title font-weight-regular mb-0">{{article.title}}</h1>
+      <h2 class="subtitle-1 font-weight-regular mb-0">{{article.subtitle}}</h2>
+      <h2 class="subtitle-1 font-weight-regular mb-5">{{formatDate}}</h2>
+      <p class="body-2 font-weight-regular mb-5">{{ article.text }}</p>
+    </div>
   </div>
 </template>
 
@@ -22,21 +17,39 @@ import Api from "../services/Api"
         article: {}
       }
     },
+
+    computed: {
+      formatDate() {
+        let date = this.article.created_at
+        return date.split('T')[0]
+      }
+    },
+
     mounted() {
       Api.getArticleById(this.$route.params.id)
         .then(article => this.article = article)
     }
-
-  }
+}
 </script>
 
 <style lang="scss" scoped>
-.card {
-  width: 85%;
-  margin: auto;
+.main {
+  padding: 6px 6px 0 6px;
 }
-.text {
-  width: 60%;
-  margin-left: 115px;
+.card {
+  width: 50%;
+  margin: 0 auto;
+  padding: 6px 12px 0 12px;
+
+}
+.title, .subtitle-1 {
+  background-color: #fafafa;
+}
+@media screen and (max-width: 600px) {
+  .card {
+    width: 100%;
+
+  }
+  
 }
 </style>
