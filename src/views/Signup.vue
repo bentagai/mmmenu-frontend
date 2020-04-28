@@ -1,8 +1,13 @@
 <template>
-  <div>
-    <v-card outlined tile width="50%" min-width="400px" class="grey lighten-5">
-      <v-card-title class="pb-0">
-        <h1>Crea tu cuenta</h1>
+  <div class="vCard">
+    <v-card 
+      outlined 
+      tile
+      width="100%"
+      class="grey lighten-5"
+    >
+      <v-card-title class="title font-weight-regular d-flex justify-center">
+        Crea tu cuenta
       </v-card-title>
       <v-card-text>
         <v-form>
@@ -25,8 +30,8 @@
           ></v-text-field>
         </v-form>
       </v-card-text>
-      <v-card-actions>
-        <v-btn depressed tile color="#3B2929" width="50%" @click="signup">Signup</v-btn>
+      <v-card-actions class="d-flex justify-center">
+        <v-btn depressed outlined tile color="#3B2929" block @click="signup">Signup</v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -68,5 +73,17 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="css" scoped>
+.vCard {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+  .vCard {
+    width: 100%;
+  }  
+}
 </style>
