@@ -1,14 +1,22 @@
 <template>
   <div>
-    <v-app>
-      <v-btn @click="ToCreate">Crear artículo</v-btn>
-      <CardArticle v-for="(article, idx) in articles" 
-        :key="idx" 
-        :card="article" 
-        @deleteArticle="deleteArticle(idx)" 
-        @click="ToArticle(article._id)"
-      />
-    </v-app>
+    <v-btn block @click="ToCreate">Crear artículo</v-btn>
+    <v-container>
+      <v-row dense>
+        <v-col
+          md="6"
+          sm="6"
+          xs="12"
+          v-for="(article, idx) in articles"   
+          :key="idx"
+        >
+          <CardArticle
+           :card="article" 
+           @deleteArticle="deleteArticle(idx)" 
+          />
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -28,10 +36,6 @@ export default {
   methods: {
     ToCreate() {
       this.$router.push('/create')
-    },
-    ToArticle(id) {
-      this.$router.push('/article')
-      this.$root.$emit('readArticle', id)
     },
     deleteArticle(idx) {
       this.articles.splice(idx, 1)

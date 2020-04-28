@@ -7,7 +7,10 @@
       color="#FAFAFA"
     >
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+      <v-spacer></v-spacer>
       <v-toolbar-title>Mmmenu</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-icon @click="logout">mdi-logout</v-icon>
     </v-app-bar>
     <v-navigation-drawer
       xs
@@ -23,30 +26,30 @@
         <v-list-item-group
           active-class="deep-purple--text text--accent-4"
         >
-          <v-list-item>
+          <v-list-item @click="toAdmin">
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Close</v-list-item-title>
+            <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
-          <v-list-item>
+          <!-- <v-list-item>
             <v-list-item-title>Qué Hacer</v-list-item-title>
             <v-list-item-icon>
               <v-icon>mdi-arrow</v-icon>
             </v-list-item-icon>
-          </v-list-item>
-          <v-list-item>
+          </v-list-item> -->
+          <!-- <v-list-item>
             <v-list-item-title>Qué Comer</v-list-item-title>
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
             </v-list-item-icon>
-          </v-list-item>
-          <v-list-item>
+          </v-list-item> -->
+          <!-- <v-list-item>
             <v-list-item-title>Qué Comprar</v-list-item-title>
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
             </v-list-item-icon>
-          </v-list-item>
+          </v-list-item> -->
           <v-list-item>
             <v-list-item-title @click="toSignup">Registrarse</v-list-item-title>
           </v-list-item>
@@ -70,6 +73,13 @@
       },
       toSignup() {
         this.$router.push('/signup')
+      },
+      toAdmin() {
+        this.$router.push('/admin')
+      },
+      logout() {
+        localStorage.removeItem("token")
+        this.$router.push('/')
       }
     }
   }

@@ -1,9 +1,11 @@
 <template>
   <div>
     <v-card
-    class="mx-auto"
-    max-width="344"
-  >
+      class="card"
+      outlined 
+      tile 
+      @click="ToArticle(card._id)"
+    >
     <v-card-title>{{ card.title }}</v-card-title>
     <v-card-subtitle>{{ card.subtitle }}</v-card-subtitle>
     <v-card-text>
@@ -50,11 +52,16 @@ export default {
         .then(() => {
           this.$emit("deleteArticle")
         })
+    },
+    ToArticle(id) {
+      this.$router.push(`/article/${id}`)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.card {
+  padding: 12px;
+}
 </style>
