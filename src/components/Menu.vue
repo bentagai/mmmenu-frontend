@@ -1,10 +1,9 @@
 <template>
   <div class="appBar">
     <v-app-bar
-      class="mx-auto overflow-hidden"
+      class="mx-auto overflow-hidden grey lighten-3"
       dense
       flat
-      color="#FAFAFA"
     >
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>

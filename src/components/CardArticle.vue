@@ -4,6 +4,7 @@
       class="card"
       outlined 
       tile 
+      color="#fafafa"
       @click="ToArticle(card._id)"
     >
     <v-card-title>{{ card.title }}</v-card-title>

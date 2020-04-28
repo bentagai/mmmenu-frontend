@@ -1,7 +1,14 @@
 <template>
   <div>
-    <v-btn block @click="ToCreate">Crear artículo</v-btn>
-    <v-container>
+    <v-btn 
+      depressed 
+      tile 
+      small 
+      color="#3B2929" 
+      block
+      @click="ToCreate"><span class="white--text">Crear artículo</span>
+    </v-btn>
+    <v-container class="container">
       <v-row dense>
         <v-col
           md="6"
@@ -54,5 +61,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.container{
+  padding: 12px 6px 0 6px;
+}
 </style>
