@@ -1,30 +1,27 @@
 <template>
-  <div>
-    <v-card outlined tile width="400px" class="ml-5 mt-5 mx-a grey lighten-5">
-      <v-card-title class="pb-0">
-        <h1>Login</h1>
+  <div class="vCard">
+    <v-card outlined tile width="100%" class="grey lighten-5">
+      <v-card-title class="title font-weight-regular d-flex justify-center">
+        Iniciar sesión
       </v-card-title>
       <v-card-text>
         <v-form>
           <v-text-field
             v-model="email"
             label="Email"
-            prepend-icon="mdi-account-circle"
           ></v-text-field>
           <v-text-field
             label="Password"
             v-model="userPassword"
             :type="showPassword ? 'text' : 'password'"
-            prepend-icon="mdi-lock"
             :rules="passwordRule"
             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="showPassword = !showPassword"
           ></v-text-field>
         </v-form>
       </v-card-text>
-      <v-divider></v-divider>
-      <v-card-actions>
-        <v-btn @click="login" color="info">Login</v-btn>
+      <v-card-actions class="d-flex justify-center">
+        <v-btn depressed text tile small color="#3B2929" block @click="login">Login</v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -58,11 +55,23 @@ export default {
         .then(response => {
           localStorage.setItem("token", response.token);
           this.$root.$emit("log", true);
-          this.$router.push("/home");
+          this.$router.push("/admin");
         })
         .catch(err => console.log(err));
     }
   }
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.vCard {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+  .vCard {
+    width: 100%;
+  }  
+}</style>

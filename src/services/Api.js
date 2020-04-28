@@ -18,32 +18,25 @@ export default {
       ...user
     })
     return response.data
+  },
+  async createArticle (article) {
+    const response = await API.post('/article', article, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    return response.data
+  },
+  async getAllArticles () {
+    const response = await API.get('/article')
+    return response.data
+  },
+  async deleteArticleById (article) {
+    const response = await API.delete(`/article/${article}`, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    return response.data
   }
-  // async addNotes (texto) {
-  //   const response = await API.post('/me/notes', {
-  //     editorData: texto
-  //   },
-  //   {
-  //     headers: {
-  //       token: localStorage.getItem('token')
-  //     }
-  //   })
-  //   return response.data
-  // },
-  // async showNotes () {
-  //   const response = await API.get('/me/notes', {
-  //     headers: {
-  //       token: localStorage.getItem('token')
-  //     }
-  //   })
-  //   return response.data
-  // },
-  // async deleteNotes (note) {
-  //   const response = await API.delete(`/me/notes/${note}`, {
-  //     headers: {
-  //       token: localStorage.getItem('token')
-  //     }
-  //   })
-  //   return response.data
-  // }
 }

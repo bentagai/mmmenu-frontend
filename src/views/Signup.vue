@@ -7,7 +7,7 @@
       class="grey lighten-5"
     >
       <v-card-title class="title font-weight-regular d-flex justify-center">
-        Crea tu cuenta
+        Registrarse
       </v-card-title>
       <v-card-text>
         <v-form>
@@ -31,7 +31,7 @@
         </v-form>
       </v-card-text>
       <v-card-actions class="d-flex justify-center">
-        <v-btn depressed outlined tile color="#3B2929" block @click="signup">Signup</v-btn>
+        <v-btn depressed outlined tile small color="#3B2929" block @click="signup">Signup</v-btn>
       </v-card-actions>
     </v-card>
   </div>

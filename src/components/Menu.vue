@@ -48,10 +48,10 @@
             </v-list-item-icon>
           </v-list-item>
           <v-list-item>
-            <v-list-item-title @click="toSignup">Signup</v-list-item-title>
+            <v-list-item-title @click="toSignup">Registrarse</v-list-item-title>
           </v-list-item>
           <v-list-item>
-            <v-list-item-title @click="toLogin">Login</v-list-item-title>
+            <v-list-item-title @click="toLogin">Iniciar sesión</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
