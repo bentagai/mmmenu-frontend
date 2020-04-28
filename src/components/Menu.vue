@@ -2,12 +2,11 @@
   <div class="appBar">
     <v-app-bar
       class="mx-auto overflow-hidden grey lighten-3"
-      dense
       flat
     >
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
-      <v-toolbar-title>Mmmenu</v-toolbar-title>
+      <v-toolbar-title><span class="display-1 font-weight-light">Mmmenu</span></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-icon @click="logout">mdi-logout</v-icon>
     </v-app-bar>

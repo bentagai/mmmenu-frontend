@@ -4,7 +4,7 @@
       outlined 
       tile
       width="100%"
-      class="grey lighten-5"
+      class="grey lighten-3"
     >
       <v-card-title class="title font-weight-regular d-flex justify-center">
         Registrarse
@@ -31,7 +31,7 @@
         </v-form>
       </v-card-text>
       <v-card-actions class="d-flex justify-center">
-        <v-btn depressed outlined tile small color="#3B2929" block @click="signup">Signup</v-btn>
+        <v-btn depressed tile small color="#3B2929" block @click="signup"><span class="white--text">Signup</span></v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -75,10 +75,8 @@ export default {
 </script>
 <style lang="css" scoped>
 .vCard {
-  display: flex;
-  justify-content: center;
   width: 50%;
-  margin: 0 auto;
+  margin: 12px auto
 }
 
 @media screen and (max-width: 600px) {

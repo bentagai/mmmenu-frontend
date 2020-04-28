@@ -1,6 +1,6 @@
 <template>
   <div class="vCard">
-    <v-card outlined tile width="100%" class="grey lighten-5">
+    <v-card outlined tile width="100%" class="grey lighten-3">
       <v-card-title class="title font-weight-regular d-flex justify-center">
         Iniciar sesión
       </v-card-title>
@@ -21,7 +21,7 @@
         </v-form>
       </v-card-text>
       <v-card-actions class="d-flex justify-center">
-        <v-btn depressed text tile small color="#3B2929" block @click="login">Login</v-btn>
+        <v-btn depressed tile small color="#3B2929" block @click="login"><span class="white--text">Login</span></v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -35,7 +35,7 @@ export default {
       userPassword: "",
       passwordRule: [
         v => !!v || "Password is required",
-        v => v.length >= 6 || "Password must be more than 10 characters"
+        v => v.length >= 6 || "Password must be more than 6 characters"
       ],
       email: "",
       emailRules: [
@@ -64,10 +64,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .vCard {
-  display: flex;
-  justify-content: center;
   width: 50%;
-  margin: 0 auto;
+  margin: 12px auto
 }
 
 @media screen and (max-width: 600px) {

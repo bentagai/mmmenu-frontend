@@ -1,14 +1,16 @@
 <template>
   <div>
     <v-card
-      class="mx-auto"
-      max-width="344"
+      class="card"
+      outlined 
+      tile 
+      color="#fafafa"
     >
       <v-card-title>{{ article.title }}</v-card-title>
       <v-card-subtitle>{{ article.subtitle }}</v-card-subtitle>
-      <v-card-text>{{ article.text }}</v-card-text>
+      <!-- <v-card-text>{{ article.text }}</v-card-text> -->
     </v-card>
-
+    <div class="text"><p>{{ article.text }}</p></div>
   </div>
 </template>
 
@@ -29,5 +31,12 @@ import Api from "../services/Api"
 </script>
 
 <style lang="scss" scoped>
-
+.card {
+  width: 85%;
+  margin: auto;
+}
+.text {
+  width: 60%;
+  margin-left: 115px;
+}
 </style>

@@ -7,14 +7,22 @@
       color="#fafafa"
       @click="ToArticle(card._id)"
     >
-    <v-card-title>{{ card.title }}</v-card-title>
-    <v-card-subtitle>{{ card.subtitle }}</v-card-subtitle>
-    <v-card-text>
-      <p class="title text--primary font-weight-regular">
-        {{ formatDate }}
-      </p>
-    </v-card-text>
-    <v-card-actions>
+      <v-img
+        class="white--text align-end"
+        height="200px"
+        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+      >
+        <v-card-title>Top 10 Australian beaches</v-card-title>
+      </v-img>
+      <v-card-title>{{ card.title }}</v-card-title>
+      <v-card-subtitle>{{ card.subtitle }}</v-card-subtitle>
+      <v-card-text>
+        <p class="title text--primary font-weight-regular">
+          {{ formatDate }}
+        </p>
+      </v-card-text>
+    </v-card>
+    <div class="button">
       <v-btn
         text
         small
@@ -30,8 +38,7 @@
       >
         Eliminar
       </v-btn>
-    </v-card-actions>
-  </v-card>
+    </div>
   </div>
 </template>
 
@@ -64,5 +71,9 @@ export default {
 <style lang="scss" scoped>
 .card {
   padding: 12px;
+}
+.button {
+  background-color: #fafafa;
+  padding-bottom: 5px;
 }
 </style>
