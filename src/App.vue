@@ -1,12 +1,12 @@
 <template>
   <v-app>
     <Menu />
-    <v-content class="grey lighten-3">
+    <v-content class="grey lighten-3 pb-10">
       <v-container fluid class="pt-0 pr-0 pl-0 ">
         <router-view></router-view>
       </v-container>
-      <Footer />
     </v-content>
+    <Footer />
   </v-app>
 </template>
 <script>
