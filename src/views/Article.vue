@@ -1,6 +1,13 @@
 <template>
   <div class="card">
-    <h1 class="display-1 font-regular mb-2">{{article.title}}</h1>
+    <v-carousel hide-delimiters>
+      <v-carousel-item
+        v-for="(item,i) in items"
+        :key="i"
+        :src="item.src"
+      ></v-carousel-item>
+    </v-carousel>
+    <h1 class="display-1 font-regular mb-2 mt-10">{{article.title}}</h1>
     <h2 class="headline font-weight-regular mb-2">{{article.subtitle}}</h2>
     <h2 class="subtitle-2 font-weight-regular mb-10">{{formatDate}}</h2>
     <p class="title font-weight-regular mb-5">{{ article.text }}</p>
@@ -12,6 +19,20 @@ import Api from "../services/Api"
  export default {
     data () {
       return {
+        items: [
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+          },
+        ],
         article: {}
       }
     },
@@ -32,7 +53,7 @@ import Api from "../services/Api"
 
 <style lang="scss" scoped>
 .card {
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
   padding: 6px 12px 0 12px;
 

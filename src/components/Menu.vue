@@ -8,7 +8,8 @@
           <span class="display-1 font-weight-light">Mmmenu</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-icon @click="logout">mdi-logout</v-icon>
+        <v-icon v-if="!status" @click="toLogin" text>mdi-login</v-icon>
+        <v-icon v-else @click="logout" text>mdi-logout</v-icon>
       </v-app-bar>
     </div>
     <v-navigation-drawer xs v-model="drawer" fixed temporary :width="windowWidth">

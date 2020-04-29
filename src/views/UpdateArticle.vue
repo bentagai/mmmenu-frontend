@@ -5,7 +5,7 @@
         <v-card-title 
           class="title font-weight-regular d-flex justify-center"
         >
-          Crear artículo
+          Modificar artículo
         </v-card-title>
         <v-card-text>
           <v-form>
