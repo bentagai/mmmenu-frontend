@@ -4,7 +4,6 @@
       <v-card outlined tile width="100%" class="grey lighten-5">
         <v-card-title 
           class="title font-weight-regular d-flex justify-center"
-
         >
           Crear artículo
         </v-card-title>

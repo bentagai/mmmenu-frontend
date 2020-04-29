@@ -75,7 +75,5 @@ export default {
 };
 </script>
 <style lang="css" scoped>
-.appBar {
-  border-bottom: 8px solid black !important;
-}
+
 </style>

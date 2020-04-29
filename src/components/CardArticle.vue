@@ -15,33 +15,31 @@
       >
         <v-card-title>Top 10 Australian beaches</v-card-title>
       </v-img>
-      <v-card-title>{{ card.title }}</v-card-title>
-      <v-card-subtitle>{{ card.subtitle }}</v-card-subtitle>
+      <v-card-title class="headline font-weight-regular mb-2">{{ card.title }}</v-card-title>
+      <v-card-subtitle class="subtitle-2 font-weight-regular mb-10">{{ card.subtitle }}</v-card-subtitle>
       <v-card-text>
-        <p class="title text--primary font-weight-regular">
+        <p class="title font-weight-regular mb-5">
           {{ formatDate }}
         </p>
       </v-card-text>
       <v-card-actions>
         <v-btn
-        text
-        small
-        color=" accent-4"
-      >
-        Actualizar
-      </v-btn>
-      <v-btn
-        text
-        small
-        color=" accent-4"
-        @click.prevent="erase(card._id)"
-      >
-        Eliminar
-      </v-btn>
+          text
+          small
+          color=" accent-4"
+        >
+          Actualizar
+        </v-btn>
+        <v-btn
+          text
+          small
+          color=" accent-4"
+          @click.prevent="erase(card._id)"
+        >
+          Eliminar
+        </v-btn>
       </v-card-actions>
     </v-card>
-    <div class="button">
-    </div>
   </div>
 </template>
 
