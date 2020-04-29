@@ -9,6 +9,7 @@
           <v-text-field
             v-model="email"
             label="Email"
+            :rules="emailRules"
           ></v-text-field>
           <v-text-field
             label="Password"

@@ -11,7 +11,17 @@ import UpdateArticle from '../views/UpdateArticle.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/admin', name: 'Admin', component: Admin },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin,
+    beforeEnter(to, from, next) {
+      if (!localStorage.getItem("token")) {
+        next({ name: 'Login' });
+      }
+      next();
+    }
+  },
   { path: '/create', name: 'Create', component: CreateArticle },
   { path: '/', name: 'Home', component: Home },
   { path: '/login', name: 'Login', component: Login },

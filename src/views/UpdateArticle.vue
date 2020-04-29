@@ -11,35 +11,17 @@
           </v-form>
         </v-card-text>
         <v-card-actions class="d-block">
-          <div class="text-center">
-            <v-btn
-              :disabled="dialog"
-              :loading="dialog"
-              class="white--text"
-              color="purple darken-2"
-              @click="dialog = true"
-            >Start loading</v-btn>
-            <v-dialog v-model="dialog" hide-overlay persistent width="300">
-              <v-card color="primary" dark>
-                <v-card-text>
-                  Please stand by
-                  <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
-                </v-card-text>
-              </v-card>
-            </v-dialog>
+          <div d-block>
+            <v-btn depressed tile small color="#3B2929" block @click="update">
+              <span class="white--text">Publicar</span>
+            </v-btn>
           </div>
         </v-card-actions>
       </v-card>
     </div>
   </div>
 </template>
-<!--
-            <div d-block>
-              <v-btn depressed tile small color="#3B2929" block @click="update">
-                <span class="white--text">Publicar</span>
-              </v-btn>
-            </div>
-            -->
+
 <script>
 import Api from "../services/Api";
 export default {
@@ -54,14 +36,6 @@ export default {
       dialog: false
     };
   },
-  watch: {
-      dialog (val) {
-        if (!val) return
-
-        setTimeout(() => (this.dialog = false), 1000)
-      },
-    },
-
   methods: {
     update() {
       const article = {
@@ -70,7 +44,6 @@ export default {
         text: this.text
       };
       Api.updateArticle(this.$route.params.id, article).then(() => {
-        alert("Artículo actualizado");
         this.$router.push("/admin");
       });
     }
