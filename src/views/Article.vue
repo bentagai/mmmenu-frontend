@@ -1,10 +1,10 @@
 <template>
   <div class="main">
     <div class="card">
-      <h1 class="title font-weight-regular mb-0">{{article.title}}</h1>
-      <h2 class="subtitle-1 font-weight-regular mb-0">{{article.subtitle}}</h2>
-      <h2 class="subtitle-1 font-weight-regular mb-5">{{formatDate}}</h2>
-      <p class="body-2 font-weight-regular mb-5">{{ article.text }}</p>
+      <h1 class="display-1 font-regular mb-2">{{article.title}}</h1>
+      <h2 class="headline font-weight-regular mb-2">{{article.subtitle}}</h2>
+      <h2 class="subtitle-2 font-weight-regular mb-10">{{formatDate}}</h2>
+      <p class="title font-weight-regular mb-5">{{ article.text }}</p>
     </div>
   </div>
 </template>
@@ -42,9 +42,7 @@ import Api from "../services/Api"
   padding: 6px 12px 0 12px;
 
 }
-.title, .subtitle-1 {
-  background-color: #fafafa;
-}
+
 @media screen and (max-width: 600px) {
   .card {
     width: 100%;

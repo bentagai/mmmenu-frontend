@@ -1,7 +1,8 @@
 <template>
   <div>
     <v-card
-      class="card"
+      height="100%"
+      class="text-truncate"
       outlined 
       tile 
       color="#fafafa"
@@ -21,9 +22,8 @@
           {{ formatDate }}
         </p>
       </v-card-text>
-    </v-card>
-    <div class="button">
-      <v-btn
+      <v-card-actions>
+        <v-btn
         text
         small
         color=" accent-4"
@@ -34,10 +34,13 @@
         text
         small
         color=" accent-4"
-        @click="erase(card._id)"
+        @click.prevent="erase(card._id)"
       >
         Eliminar
       </v-btn>
+      </v-card-actions>
+    </v-card>
+    <div class="button">
     </div>
   </div>
 </template>
@@ -69,9 +72,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card {
-  padding: 12px;
-}
 .button {
   background-color: #fafafa;
   padding-bottom: 5px;

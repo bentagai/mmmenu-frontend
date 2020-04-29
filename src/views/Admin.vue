@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn 
+    <v-btn
       depressed 
       tile 
       small 
