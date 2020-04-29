@@ -68,10 +68,8 @@ export default {
       Api.updateArticle(this.$route.params.id, article)
         .then(() => {
           alert('Artículo actualizado')
+          this.$router.push('/admin')
         })
-    },
-    toAdmin() {
-      this.$router.push('/admin')
     }
   },
   mounted() {
