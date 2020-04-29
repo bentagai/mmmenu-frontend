@@ -14,7 +14,7 @@
         <v-card-title>Top 10 Australian beaches</v-card-title>
       </v-img>
       <v-card-title class="headline font-weight-regular">{{ card.title }}</v-card-title>
-      <v-card-subtitle class="title font-weight-regular text-truncate pb-2">{{ card.subtitle }}</v-card-subtitle>
+      <v-card-subtitle class="title font-weight-regular text-truncate pb-2" style="max-width: 2000px block" >{{ card.subtitle }}</v-card-subtitle>
       <v-card-text class="pb-0">
         <p class="subtitle-2 font-weight-regular">
           {{ formatDate }}

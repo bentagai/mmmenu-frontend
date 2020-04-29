@@ -50,7 +50,7 @@ export default {
   },
   mounted() {
     Api.getAllArticles()
-      .then(articles => this.articles = articles)   
+      .then(articles => this.articles = articles.reverse())
   }
 }
 </script>

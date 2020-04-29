@@ -11,7 +11,7 @@
         <v-icon @click="logout">mdi-logout</v-icon>
       </v-app-bar>
     </div>
-    <v-navigation-drawer xs v-model="drawer" fixed temporary width="50%">
+    <v-navigation-drawer xs v-model="drawer" fixed temporary :width="windowWidth">
       <v-list nav dense>
         <v-list-item-group>
           <v-list-item @click="toAdmin">
@@ -50,6 +50,7 @@
             </v-list-item>
             <v-list-item>
               <v-list-item-title @click="logout">Cerrar sesión</v-list-item-title>
+
             </v-list-item>
           </div>
         </v-list-item-group>
@@ -63,6 +64,7 @@ export default {
   data: () => ({
     drawer: false,
     status: false,
+    windowWidth: '' 
   }),
   computed: {
     status() {
@@ -80,7 +82,7 @@ export default {
       this.$router.push("/signup");
     },
     toCreate() {
-      this.$router.push('/create')
+      this.$router.push("/create");
     },
     logout() {
       localStorage.removeItem("token");
@@ -89,10 +91,15 @@ export default {
     }
   },
   mounted: function() {
-    this.$root.$on("log", (status) => {
+    this.$root.$on("log", status => {
       this.status = status;
     });
-  },
+    this.windowWidth = window.innerWidth < 600 ? '75%' : '50%' ;
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth < 600 ? '75%' : '50%' ;
+    };
+  }
 };
 </script>
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+</style>
