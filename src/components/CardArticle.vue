@@ -25,6 +25,7 @@
           text
           small
           color=" accent-4"
+          @click.stop.prevent="update(card._id)"
         >
           Actualizar
         </v-btn>
@@ -32,7 +33,7 @@
           text
           small
           color=" accent-4"
-          @click.prevent="erase(card._id)"
+          @click.stop.prevent="erase(card._id)"
         >
           Eliminar
         </v-btn>
@@ -59,6 +60,9 @@ export default {
         .then(() => {
           this.$emit("deleteArticle")
         })
+    },
+    update(id) {
+      this.$router.push(`/update/${id}`)
     },
     ToArticle(id) {
       this.$router.push(`/article/${id}`)

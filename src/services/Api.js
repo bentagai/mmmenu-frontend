@@ -42,5 +42,13 @@ export default {
   async getArticleById (article) {
     const response = await API.get(`/article/${article}`)
     return response.data
+  },
+  async updateArticle (id, article) {
+    const response = await API.put(`/article/${id}`, article, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    return response.data
   }
 }

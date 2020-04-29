@@ -50,12 +50,7 @@ export default {
   },
   mounted() {
     Api.getAllArticles()
-      .then(articles => this.articles = articles)
-        .then(() => {
-          this.$on("deleteArticle", article => {
-              this.articles = this.articles.filter(art => art._id !== article)
-            })
-        })    
+      .then(articles => this.articles = articles)   
   }
 }
 </script>

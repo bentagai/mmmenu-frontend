@@ -6,6 +6,7 @@ import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import CreateArticle from '../views/CreateArticle.vue'
 import Article from '../views/Article.vue'
+import UpdateArticle from '../views/UpdateArticle.vue'
 
 Vue.use(VueRouter)
 
@@ -15,7 +16,8 @@ const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/login', name: 'Login', component: Login },
   { path: '/signup', name: 'Signup', component: Signup },
-  { path: '/article/:id', name: 'Article', component: Article }
+  { path: '/article/:id', name: 'Article', component: Article },
+  { path: '/update/:id', name: 'Update', component: UpdateArticle }
 ]
 
 const router = new VueRouter({
