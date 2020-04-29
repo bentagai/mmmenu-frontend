@@ -1,8 +1,6 @@
 <template>
   <div>
     <v-card
-      height="100%"
-      class="text-truncate"
       outlined 
       tile 
       color="#fafafa"
@@ -15,10 +13,10 @@
       >
         <v-card-title>Top 10 Australian beaches</v-card-title>
       </v-img>
-      <v-card-title class="headline font-weight-regular mb-2">{{ card.title }}</v-card-title>
-      <v-card-subtitle class="title font-weight-regular mb-5">{{ card.subtitle }}</v-card-subtitle>
-      <v-card-text>
-        <p class="subtitle-2 font-weight-regular mb-10">
+      <v-card-title class="headline font-weight-regular">{{ card.title }}</v-card-title>
+      <v-card-subtitle class="title font-weight-regular text-truncate pb-2">{{ card.subtitle }}</v-card-subtitle>
+      <v-card-text class="pb-0">
+        <p class="subtitle-2 font-weight-regular">
           {{ formatDate }}
         </p>
       </v-card-text>

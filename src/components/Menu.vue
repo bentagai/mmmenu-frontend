@@ -1,11 +1,7 @@
 <template>
   <div>
     <div class="appBar">
-      <v-app-bar 
-      class="overflow-hidden grey lighten-3" 
-      flat 
-      app
-      >
+      <v-app-bar class="overflow-hidden grey lighten-3" flat app>
         <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
         <v-spacer></v-spacer>
         <v-toolbar-title>
@@ -15,7 +11,7 @@
         <v-icon @click="logout">mdi-logout</v-icon>
       </v-app-bar>
     </div>
-    <v-navigation-drawer xs v-model="drawer" absolute temporary width="50%">
+    <v-navigation-drawer xs v-model="drawer" fixed temporary width="50%">
       <v-list nav dense>
         <v-list-item-group>
           <v-list-item @click="toAdmin">
@@ -40,15 +36,22 @@
                 <v-icon>mdi-home</v-icon>
               </v-list-item-icon>
           </v-list-item>-->
-          <v-list-item v-if="satus">
-            <v-list-item-title @click="toSignup">Registrarse</v-list-item-title>
-          </v-list-item>
-          <v-list-item v-else-if="satus">
-            <v-list-item-title @click="toLogin">Iniciar sesión</v-list-item-title>
-          </v-list-item>
-          <v-list-item v-else>
-            <v-list-item-title @click="logout">Cerrar sesión</v-list-item-title>
-          </v-list-item>
+          <div v-if="!status">
+            <v-list-item>
+              <v-list-item-title @click="toSignup">Registrarse</v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title @click="toLogin">Iniciar sesión</v-list-item-title>
+            </v-list-item>
+          </div>
+          <div v-else>
+            <v-list-item>
+              <v-list-item-title @click="toCreate">Crear artículo</v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title @click="logout">Cerrar sesión</v-list-item-title>
+            </v-list-item>
+          </div>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -59,35 +62,37 @@ export default {
   name: "Menu",
   data: () => ({
     drawer: false,
-    status: false
+    status: false,
   }),
   computed: {
     status() {
-      return this.status
-    }
+      return this.status;
+    },
   },
   methods: {
+    toAdmin() {
+      this.$router.push("/admin");
+    },
     toLogin() {
       this.$router.push("/login");
     },
     toSignup() {
       this.$router.push("/signup");
     },
-    toAdmin() {
-      this.$router.push("/admin");
+    toCreate() {
+      this.$router.push('/create')
     },
     logout() {
       localStorage.removeItem("token");
+      this.status = false;
       this.$router.push("/");
     }
   },
   mounted: function() {
-    this.$root.$on('log', status => {
-      this.status = status
-    })
-  }
+    this.$root.$on("log", (status) => {
+      this.status = status;
+    });
+  },
 };
 </script>
-<style lang="css" scoped>
-
-</style>
+<style lang="css" scoped></style>

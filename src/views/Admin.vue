@@ -6,7 +6,7 @@
       small 
       color="#3B2929" 
       block
-      @click="ToCreate"><span class="white--text">Crear artículo</span>
+      @click="toCreate"><span class="white--text">Crear artículo</span>
     </v-btn>
     <v-container class="container">
       <v-row dense>
@@ -41,7 +41,7 @@ export default {
     CardArticle
   },
   methods: {
-    ToCreate() {
+    toCreate() {
       this.$router.push('/create')
     },
     deleteArticle(idx) {
