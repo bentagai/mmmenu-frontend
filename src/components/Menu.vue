@@ -40,11 +40,14 @@
                 <v-icon>mdi-home</v-icon>
               </v-list-item-icon>
           </v-list-item>-->
-          <v-list-item>
+          <v-list-item v-if="satus">
             <v-list-item-title @click="toSignup">Registrarse</v-list-item-title>
           </v-list-item>
-          <v-list-item>
+          <v-list-item v-else-if="satus">
             <v-list-item-title @click="toLogin">Iniciar sesión</v-list-item-title>
+          </v-list-item>
+          <v-list-item v-else>
+            <v-list-item-title @click="logout">Cerrar sesión</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
@@ -55,8 +58,14 @@
 export default {
   name: "Menu",
   data: () => ({
-    drawer: false
+    drawer: false,
+    status: false
   }),
+  computed: {
+    status() {
+      return this.status
+    }
+  },
   methods: {
     toLogin() {
       this.$router.push("/login");
@@ -71,6 +80,11 @@ export default {
       localStorage.removeItem("token");
       this.$router.push("/");
     }
+  },
+  mounted: function() {
+    this.$root.$on('log', status => {
+      this.status = status
+    })
   }
 };
 </script>
