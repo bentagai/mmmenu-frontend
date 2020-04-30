@@ -1,25 +1,11 @@
 <template>
   <div class="vCard">
-    <v-card 
-      outlined 
-      tile
-      width="100%"
-      class="grey lighten-3"
-    >
-      <v-card-title class="title font-weight-regular d-flex justify-center">
-        Registrarse
-      </v-card-title>
+    <v-card outlined tile width="100%" class="grey lighten-3">
+      <v-card-title class="title font-weight-regular d-flex justify-center">Registrarse</v-card-title>
       <v-card-text>
         <v-form>
-          <v-text-field
-            label="Username"
-            v-model="userName"
-          ></v-text-field>
-          <v-text-field
-            label="E-mail"
-            v-model="email"
-            :rules="emailRules"
-          ></v-text-field>
+          <v-text-field label="Username" v-model="userName"></v-text-field>
+          <v-text-field label="E-mail" v-model="email" :rules="emailRules"></v-text-field>
           <v-text-field
             label="Password"
             v-model="userPassword"
@@ -31,7 +17,9 @@
         </v-form>
       </v-card-text>
       <v-card-actions class="d-flex justify-center">
-        <v-btn depressed tile small color="#3B2929" block @click="signup"><span class="white--text">Signup</span></v-btn>
+        <v-btn depressed tile small color="#3B2929" block @click="signup">
+          <span class="grey--text text--lighten-5">Signup</span>
+        </v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -76,12 +64,12 @@ export default {
 <style lang="css" scoped>
 .vCard {
   width: 50%;
-  margin: 12px auto
+  margin: 12px auto;
 }
 
 @media screen and (max-width: 600px) {
   .vCard {
     width: 100%;
-  }  
+  }
 }
 </style>

@@ -22,7 +22,7 @@
         </v-form>
       </v-card-text>
       <v-card-actions class="d-flex justify-center">
-        <v-btn depressed tile small color="#3B2929" block @click="login"><span class="white--text">Login</span></v-btn>
+        <v-btn depressed tile small color="#3B2929" block @click="login"><span class="grey--text text--lighten-5">Login</span></v-btn>
       </v-card-actions>
     </v-card>
   </div>

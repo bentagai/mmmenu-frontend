@@ -51,7 +51,6 @@
             </v-list-item>
             <v-list-item>
               <v-list-item-title @click="logout">Cerrar sesión</v-list-item-title>
-
             </v-list-item>
           </div>
         </v-list-item-group>
@@ -65,15 +64,20 @@ export default {
   data: () => ({
     drawer: false,
     status: false,
-    windowWidth: '' 
+    windowWidth: ""
   }),
   computed: {
     status() {
       return this.status;
-    },
+    }
   },
   methods: {
     toAdmin() {
+      if (!localStorage.getItem("token")) {
+        this.$router.push("/login");
+      } else {
+        this.$router.push("/admin");
+      }
       this.$router.push("/admin");
     },
     toLogin() {
@@ -92,12 +96,13 @@ export default {
     }
   },
   mounted: function() {
+    this.status = localStorage.getItem("token") ? true : false;
     this.$root.$on("log", status => {
       this.status = status;
     });
-    this.windowWidth = window.innerWidth < 600 ? '75%' : '50%' ;
+    this.windowWidth = window.innerWidth < 600 ? "75%" : "50%";
     window.onresize = () => {
-      this.windowWidth = window.innerWidth < 600 ? '75%' : '50%' ;
+      this.windowWidth = window.innerWidth < 600 ? "75%" : "50%";
     };
   }
 };

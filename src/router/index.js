@@ -10,17 +10,19 @@ import UpdateArticle from '../views/UpdateArticle.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/admin',
     name: 'Admin',
     component: Admin,
-    beforeEnter(to, from, next) {
-      if (!localStorage.getItem("token")) {
-        next({ name: 'Login' });
-      }
-      next();
-    }
+    // beforeEnter(to, from, next) {
+    //   console.log(localStorage.getItem("token"))
+    //   if (!localStorage.getItem("token")) {
+    //     next({
+    //       path: '/login'
+    //     });
+    //   }
+    //   next();
+    // }
   },
   {
     path: '/create',
@@ -28,22 +30,42 @@ const routes = [
     component: CreateArticle,
     beforeEnter(to, from, next) {
       if (!localStorage.getItem("token")) {
-        next({ name: 'Login' });
+        next({
+          name: 'Login'
+        });
       }
       next();
     }
   },
-  { path: '/', name: 'Home', component: Home },
-  { path: '/login', name: 'Login', component: Login },
-  { path: '/signup', name: 'Signup', component: Signup },
-  { path: '/article/:id', name: 'Article', component: Article },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Signup
+  },
+  {
+    path: '/article/:id',
+    name: 'Article',
+    component: Article
+  },
   {
     path: '/update/:id',
     name: 'Update',
     component: UpdateArticle,
     beforeEnter(to, from, next) {
       if (!localStorage.getItem("token")) {
-        next({ name: 'Login' });
+        next({
+          name: 'Login'
+        });
       }
       next();
     }

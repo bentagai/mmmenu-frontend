@@ -1,74 +1,49 @@
 <template>
   <div>
-    <v-card
-      outlined 
-      tile 
-      color="#fafafa"
-      @click="ToArticle(card._id)"
-    >
-      <v-img
-        class="white--text align-end"
-        height="200px"
-        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-      >
-        <v-card-title>Top 10 Australian beaches</v-card-title>
-      </v-img>
+    <v-card outlined tile color="#fafafa" @click="ToArticle(card._id)">
+      <v-img height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"></v-img>
       <v-card-title class="headline font-weight-regular">{{ card.title }}</v-card-title>
-      <v-card-subtitle class="title font-weight-regular text-truncate pb-2" style="max-width: 2000px block" >{{ card.subtitle }}</v-card-subtitle>
+      <v-card-subtitle
+        class="title font-weight-regular text-truncate pb-2"
+        style="max-width: 2000px block"
+      >{{ card.subtitle }}</v-card-subtitle>
       <v-card-text class="pb-0">
-        <p class="subtitle-2 font-weight-regular">
-          {{ formatDate }}
-        </p>
+        <p class="subtitle-2 font-weight-regular">{{ formatDate }}</p>
       </v-card-text>
       <v-card-actions>
-        <v-btn
-          text
-          small
-          color=" accent-4"
-          @click.stop.prevent="update(card._id)"
-        >
-          Actualizar
-        </v-btn>
-        <v-btn
-          text
-          small
-          color=" accent-4"
-          @click.stop.prevent="erase(card._id)"
-        >
-          Eliminar
-        </v-btn>
+        <v-btn text small color=" accent-4" @click.stop.prevent="update(card._id)">Actualizar</v-btn>
+        <v-btn text small color=" accent-4" @click.stop.prevent="erase(card._id)">Eliminar</v-btn>
       </v-card-actions>
     </v-card>
   </div>
 </template>
 
 <script>
-import Api from "../services/Api"
+import Api from "../services/Api";
 export default {
   computed: {
     formatDate() {
-      let date = this.card.created_at
-      return date.split('T')[0]
+      let date = this.card.created_at;
+      return date.split("T")[0];
     }
   },
   props: {
-    card: Object,
+    card: Object
   },
   methods: {
     erase(article) {
-      Api.deleteArticleById(article)
-        .then(() => {
-          this.$emit("deleteArticle")
-        })
+      Api.deleteArticleById(article).then(() => {
+        this.$emit("deleteArticle");
+      });
     },
     update(id) {
-      this.$router.push(`/update/${id}`)
+      this.$router.push(`/update/${id}`);
     },
     ToArticle(id) {
-      this.$router.push(`/article/${id}`)
+      this.$router.push(`/article/${id}`);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -11,10 +11,20 @@
           </v-form>
         </v-card-text>
         <v-card-actions class="d-block">
-          <div d-block>
-            <v-btn depressed tile small color="#3B2929" block @click="update">
-              <span class="white--text">Publicar</span>
-            </v-btn>
+          <div class="text-center">
+            <div d-block>
+              <v-btn depressed tile small color="#3B2929" block @click="update">
+                <span class="grey--text text--lighten-5">Publicar</span>
+              </v-btn>
+            </div>
+            <v-dialog v-model="dialog" hide-overlay persistent width="300">
+              <v-card color="#3B2929" dark>
+                <v-card-text class="subtitle-2 font-weight-regular text-center grey--text text--lighten-5 pt-2" height="100px">
+                  Actualizando
+                  <v-progress-linear indeterminate class="mt-2" background-color="brown darken-1" color="grey lighten-5"></v-progress-linear>
+                </v-card-text>
+              </v-card>
+            </v-dialog>
           </div>
         </v-card-actions>
       </v-card>
@@ -36,6 +46,12 @@ export default {
       dialog: false
     };
   },
+  watch: {
+    dialog(val) {
+      if (!val) return;
+      setTimeout(() => (this.dialog = false), 1500);
+    }
+  },
   methods: {
     update() {
       const article = {
@@ -43,8 +59,9 @@ export default {
         subtitle: this.subtitle,
         text: this.text
       };
-      Api.updateArticle(this.$route.params.id, article).then(() => {
-        this.$router.push("/admin");
+      Api.updateArticle(this.$route.params.id, article).then(response => {
+        this.dialog = true;
+        setTimeout(() => this.$router.push("/admin"), 1500);
       });
     }
   },
