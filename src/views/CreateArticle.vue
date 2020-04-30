@@ -5,16 +5,26 @@
         <v-card-title class="title font-weight-regular d-flex justify-center">Crear artículo</v-card-title>
         <v-card-text>
           <v-form>
-            <v-text-field counter label="Title" v-model="title" :rules="titleRule"></v-text-field>
-            <v-text-field counter label="Subtitle" v-model="subtitle" :rules="subtitleRule"></v-text-field>
-            <v-textarea counter label="Text" v-model="text" :rules="textRule"></v-textarea>
+            <v-text-field counter label="Title" v-model="title" :rules="titleRule" class="mb-1"></v-text-field>
+            <v-text-field counter label="Subtitle" v-model="subtitle" :rules="subtitleRule" class="mb-10"></v-text-field>
+            <ckeditor :editor="editor" v-model="text" :config="editorConfig" counter></ckeditor>
           </v-form>
         </v-card-text>
         <v-card-actions class="d-block">
-          <div d-block>
-            <v-btn depressed tile small color="#3B2929" block @click="create">
-              <span class="grey--text text--lighten-5">Publicar</span>
-            </v-btn>
+          <div class="text-center">
+            <div d-block>
+              <v-btn depressed tile small color="#3B2929" block @click="create">
+                <span class="grey--text text--lighten-5">Publicar</span>
+              </v-btn>
+            </div>
+            <v-dialog v-model="dialog" hide-overlay persistent width="300">
+              <v-card color="#3B2929" dark>
+                <v-card-text
+                  class="subtitle-2 font-weight-regular d-flex justify-center grey--text text--lighten-5 pt-5"
+                  height="100px"
+                >Publicado</v-card-text>
+              </v-card>
+            </v-dialog>
           </div>
           <div d-block class="mt-1">
             <v-btn depressed tile small color="#3B2929" block @click="toAdmin">
@@ -25,10 +35,17 @@
       </v-card>
     </div>
   </div>
+
+  <!-- <div d-block>
+    <v-btn depressed tile small color="#3B2929" block @click="create">
+      <span class="grey--text text--lighten-5">Publicar</span>
+    </v-btn>
+  </div>-->
 </template>
 
 <script>
 import Api from "../services/Api";
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export default {
   data() {
     return {
@@ -36,9 +53,18 @@ export default {
       titleRule: [v => !!v || "Title is required"],
       subtitle: "",
       subtitleRule: [v => !!v || "Subtitle is required"],
-      text: "",
-      textRule: [v => !!v || "Main text is required"]
+      editor: ClassicEditor,
+      text: '<p>Type...</p>',
+      editorConfig: {},
+      textRule: [v => !!v || "Main text is required"],
+      dialog: false
     };
+  },
+  watch: {
+    dialog(val) {
+      if (!val) return;
+      setTimeout(() => (this.dialog = false), 1500);
+    }
   },
   methods: {
     create() {
@@ -48,8 +74,11 @@ export default {
         text: this.text
       };
       console.log(article);
-      Api.createArticle(article).then(() => {
-        alert("Artículo creado");
+      Api.createArticle(article).then(response => {
+        this.dialog = true;
+        this.title = "";
+        this.subtitle = "";
+        this.text = "";
       });
     },
     toAdmin() {

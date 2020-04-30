@@ -15,10 +15,12 @@
     <v-navigation-drawer xs v-model="drawer" fixed temporary :width="windowWidth">
       <v-list nav dense>
         <v-list-item-group>
-          <v-list-item @click="toAdmin">
+          <v-list-item>
             <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
+              <v-icon>mdi-close</v-icon>
             </v-list-item-icon>
+          </v-list-item>
+          <v-list-item @click="toAdmin">
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
           <!-- <v-list-item>
@@ -78,7 +80,6 @@ export default {
       } else {
         this.$router.push("/admin");
       }
-      this.$router.push("/admin");
     },
     toLogin() {
       this.$router.push("/login");

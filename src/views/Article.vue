@@ -10,7 +10,7 @@
     <h1 class="display-1 font-regular mb-2 mt-10">{{article.title}}</h1>
     <h2 class="headline font-weight-regular mb-2">{{article.subtitle}}</h2>
     <h2 class="subtitle-2 font-weight-regular mb-10">{{formatDate}}</h2>
-    <p class="title font-weight-regular mb-5">{{ article.text }}</p>
+    <p class="title font-weight-regular" v-html="article.text"></p>
   </div>
 </template>
 

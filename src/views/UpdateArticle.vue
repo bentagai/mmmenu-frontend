@@ -5,9 +5,9 @@
         <v-card-title class="title font-weight-regular d-flex justify-center">Modificar artículo</v-card-title>
         <v-card-text>
           <v-form>
-            <v-text-field counter label="Title" v-model="title" :rules="titleRule"></v-text-field>
-            <v-text-field counter label="Subtitle" v-model="subtitle" :rules="subtitleRule"></v-text-field>
-            <v-textarea counter label="Text" v-model="text" :rules="textRule"></v-textarea>
+            <v-text-field counter label="Title" v-model="title" :rules="titleRule" class="mb-1"></v-text-field>
+            <v-text-field counter label="Subtitle" v-model="subtitle" :rules="subtitleRule" class="mb-10"></v-text-field>
+            <ckeditor :editor="editor" v-model="text" :config="editorConfig" counter></ckeditor>
           </v-form>
         </v-card-text>
         <v-card-actions class="d-block">
@@ -19,9 +19,17 @@
             </div>
             <v-dialog v-model="dialog" hide-overlay persistent width="300">
               <v-card color="#3B2929" dark>
-                <v-card-text class="subtitle-2 font-weight-regular text-center grey--text text--lighten-5 pt-2" height="100px">
+                <v-card-text
+                  class="subtitle-2 font-weight-regular text-center grey--text text--lighten-5 pt-2"
+                  height="100px"
+                >
                   Actualizando
-                  <v-progress-linear indeterminate class="mt-2" background-color="brown darken-1" color="grey lighten-5"></v-progress-linear>
+                  <v-progress-linear
+                    indeterminate
+                    class="mt-2"
+                    background-color="brown darken-1"
+                    color="grey lighten-5"
+                  ></v-progress-linear>
                 </v-card-text>
               </v-card>
             </v-dialog>
@@ -34,6 +42,7 @@
 
 <script>
 import Api from "../services/Api";
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export default {
   data() {
     return {
@@ -41,7 +50,9 @@ export default {
       titleRule: [v => !!v || "Title is required"],
       subtitle: "",
       subtitleRule: [v => !!v || "Subtitle is required"],
-      text: "",
+      editor: ClassicEditor,
+      text: '<p>Type...</p>',
+      editorConfig: {},
       textRule: [v => !!v || "Main text is required"],
       dialog: false
     };
