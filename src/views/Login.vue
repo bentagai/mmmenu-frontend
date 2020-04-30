@@ -21,8 +21,13 @@
           ></v-text-field>
         </v-form>
       </v-card-text>
-      <v-card-actions class="d-flex justify-center">
-        <v-btn depressed tile small color="#3B2929" block @click="login"><span class="grey--text text--lighten-5">Login</span></v-btn>
+      <v-card-actions class="d-block">
+        <div d-block>
+          <v-btn depressed tile small color="#3B2929" block @click="login"><span class="grey--text text--lighten-5">Login</span></v-btn>
+        </div>
+        <div d-block class="mt-1">
+          <v-btn depressed tile small color="#3B2929" block @click="toSignup"><span class="grey--text text--lighten-5">Regístrate</span></v-btn>
+        </div>
       </v-card-actions>
     </v-card>
   </div>
@@ -59,7 +64,10 @@ export default {
           this.$router.push("/admin");
         })
         .catch(err => console.log(err));
-    }
+    },
+    toSignup() {
+      this.$router.push("/signup");
+    },
   }
 };
 </script>

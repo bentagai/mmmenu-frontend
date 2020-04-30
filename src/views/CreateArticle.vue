@@ -6,7 +6,13 @@
         <v-card-text>
           <v-form>
             <v-text-field counter label="Title" v-model="title" :rules="titleRule" class="mb-1"></v-text-field>
-            <v-text-field counter label="Subtitle" v-model="subtitle" :rules="subtitleRule" class="mb-10"></v-text-field>
+            <v-text-field
+              counter
+              label="Subtitle"
+              v-model="subtitle"
+              :rules="subtitleRule"
+              class="mb-10"
+            ></v-text-field>
             <ckeditor :editor="editor" v-model="text" :config="editorConfig" counter></ckeditor>
           </v-form>
         </v-card-text>
@@ -27,7 +33,7 @@
             </v-dialog>
           </div>
           <div d-block class="mt-1">
-            <v-btn depressed tile small color="#3B2929" block @click="toAdmin">
+            <v-btn depressed tile small color="#3B2929" block @click="toAdmin"> 
               <span class="grey--text text--lighten-5">Ver</span>
             </v-btn>
           </div>
@@ -45,7 +51,7 @@
 
 <script>
 import Api from "../services/Api";
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 export default {
   data() {
     return {
@@ -54,7 +60,7 @@ export default {
       subtitle: "",
       subtitleRule: [v => !!v || "Subtitle is required"],
       editor: ClassicEditor,
-      text: '<p>Type...</p>',
+      text: "<p>Type...</p>",
       editorConfig: {},
       textRule: [v => !!v || "Main text is required"],
       dialog: false
