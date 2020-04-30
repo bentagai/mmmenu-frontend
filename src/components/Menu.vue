@@ -15,13 +15,11 @@
     <v-navigation-drawer xs v-model="drawer" fixed temporary :width="windowWidth">
       <v-list nav dense>
         <v-list-item-group>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-close</v-icon>
-            </v-list-item-icon>
+          <v-list-item @click="drawer = false">
+            <v-icon>mdi-close</v-icon>
           </v-list-item>
           <v-list-item @click="toAdmin">
-            <v-list-item-title>Home</v-list-item-title>
+            <v-list-item-title>Admin</v-list-item-title>
           </v-list-item>
           <!-- <v-list-item>
               <v-list-item-title>Qué Hacer</v-list-item-title>

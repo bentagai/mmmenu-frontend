@@ -79,7 +79,6 @@ export default {
         subtitle: this.subtitle,
         text: this.text
       };
-      console.log(article);
       Api.createArticle(article).then(response => {
         this.dialog = true;
         this.title = "";
