@@ -22,12 +22,32 @@ const routes = [
       next();
     }
   },
-  { path: '/create', name: 'Create', component: CreateArticle },
+  {
+    path: '/create',
+    name: 'Create',
+    component: CreateArticle,
+    beforeEnter(to, from, next) {
+      if (!localStorage.getItem("token")) {
+        next({ name: 'Login' });
+      }
+      next();
+    }
+  },
   { path: '/', name: 'Home', component: Home },
   { path: '/login', name: 'Login', component: Login },
   { path: '/signup', name: 'Signup', component: Signup },
   { path: '/article/:id', name: 'Article', component: Article },
-  { path: '/update/:id', name: 'Update', component: UpdateArticle }
+  {
+    path: '/update/:id',
+    name: 'Update',
+    component: UpdateArticle,
+    beforeEnter(to, from, next) {
+      if (!localStorage.getItem("token")) {
+        next({ name: 'Login' });
+      }
+      next();
+    }
+  }
 ]
 
 const router = new VueRouter({
