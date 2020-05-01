@@ -13,6 +13,7 @@
             :rules="passwordRule"
             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="showPassword = !showPassword"
+            @keyup.enter="signup"
           ></v-text-field>
         </v-form>
       </v-card-text>
@@ -54,7 +55,7 @@ export default {
         .then(response => {
           localStorage.setItem("token", response.token);
           this.$root.$emit("log", true);
-          this.$router.push("/home");
+          this.$router.push("/admin");
         })
         .catch(err => console.log(err));
     }

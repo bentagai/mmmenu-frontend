@@ -12,7 +12,20 @@
       </v-card-text>
       <v-card-actions>
         <v-btn text small color=" accent-4" @click.stop.prevent="update(card._id)">Actualizar</v-btn>
-        <v-btn text small color=" accent-4" @click.stop.prevent="erase(card._id)">Eliminar</v-btn>
+        <v-btn text small color=" accent-4" @click.stop.prevent="dialog = true">Eliminar</v-btn>
+        
+        <v-row justify="center">
+          <v-dialog v-model="dialog" max-width="290">
+            <v-card>
+              <v-card-title class="headline">Eliminar</v-card-title>
+              <v-card-actions>
+                <v-btn color="green darken-1" text @click="dialog = false">No</v-btn>
+                <v-btn color="green darken-1" text @click="erase(card._id)">Si</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-row>
+
       </v-card-actions>
     </v-card>
   </div>
@@ -21,6 +34,11 @@
 <script>
 import Api from "../services/Api";
 export default {
+  data () {
+    return {
+      dialog: false,
+    }
+  },
   computed: {
     formatDate() {
       let date = this.card.created_at;
@@ -32,8 +50,9 @@ export default {
   },
   methods: {
     erase(article) {
-      Api.deleteArticleById(article).then(() => {
+      Api.deleteArticleById(article).then( response =>  {
         this.$emit("deleteArticle");
+        this.dialog = false;
       });
     },
     update(id) {
