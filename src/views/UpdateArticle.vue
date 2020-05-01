@@ -28,7 +28,7 @@
                     indeterminate
                     class="mt-2"
                     background-color="brown darken-1"
-                    color="grey lighten-5"
+                    color="amber lighten-5"
                   ></v-progress-linear>
                 </v-card-text>
               </v-card>

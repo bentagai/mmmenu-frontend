@@ -18,9 +18,10 @@ const routes = [{
     if (!localStorage.getItem("token")) {
       next({
         path: '/login'
-      });
+      })
+    } else {
+      next()
     }
-    next();
   }
 },
 {
@@ -31,9 +32,10 @@ const routes = [{
     if (!localStorage.getItem("token")) {
       next({
         name: 'Login'
-      });
+      })
+    } else {
+      next()
     }
-    next();
   }
 },
 {
@@ -64,9 +66,10 @@ const routes = [{
     if (!localStorage.getItem("token")) {
       next({
         name: 'Login'
-      });
+      })
+    } else {
+      next()
     }
-    next();
   }
 }]
 

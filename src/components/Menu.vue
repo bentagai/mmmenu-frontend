@@ -79,11 +79,11 @@ export default {
   },
   methods: {
     toAdmin() {
-      if (!localStorage.getItem("token")) {
-        this.$router.push("/login");
-      } else {
+      //if (!localStorage.getItem("token")) {
+      //  this.$router.push("/login");
+      //} else {
         this.$router.push("/admin");
-      }
+      //}
     },
     toLogin() {
       this.$router.push("/login");

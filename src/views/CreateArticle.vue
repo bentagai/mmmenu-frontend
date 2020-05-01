@@ -26,16 +26,19 @@
             <v-dialog v-model="dialog" hide-overlay persistent width="300">
               <v-card color="#3B2929" dark>
                 <v-card-text
-                  class="subtitle-2 font-weight-regular d-flex justify-center grey--text text--lighten-5 pt-5"
+                  class="subtitle-2 font-weight-regular text-center grey--text text--lighten-5 pt-2"
                   height="100px"
-                >Publicado</v-card-text>
+                >
+                  Publicando
+                  <v-progress-linear
+                    indeterminate
+                    class="mt-2"
+                    background-color="brown darken-1"
+                    color="amber lighten-5"
+                  ></v-progress-linear>
+                </v-card-text>
               </v-card>
             </v-dialog>
-          </div>
-          <div d-block class="mt-1">
-            <v-btn depressed tile small color="#3B2929" block @click="toAdmin"> 
-              <span class="grey--text text--lighten-5">Ver</span>
-            </v-btn>
           </div>
         </v-card-actions>
       </v-card>
@@ -81,13 +84,8 @@ export default {
       };
       Api.createArticle(article).then(response => {
         this.dialog = true;
-        this.title = "";
-        this.subtitle = "";
-        this.text = "";
+        setTimeout(() => this.$router.push("/admin"), 1500);
       });
-    },
-    toAdmin() {
-      this.$router.push("/admin");
     }
   }
 };
