@@ -1,16 +1,10 @@
 <template>
   <div class="vCard">
     <v-card outlined tile width="100%" class="grey lighten-3">
-      <v-card-title class="title font-weight-regular d-flex justify-center">
-        Iniciar sesión
-      </v-card-title>
+      <v-card-title class="title font-weight-regular d-flex justify-center">Iniciar sesión</v-card-title>
       <v-card-text>
         <v-form>
-          <v-text-field
-            v-model="email"
-            label="Email"
-            :rules="emailRules"
-          ></v-text-field>
+          <v-text-field v-model="email" label="Email" :rules="emailRules"></v-text-field>
           <v-text-field
             label="Password"
             v-model="userPassword"
@@ -19,23 +13,26 @@
             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="showPassword = !showPassword"
             @keyup.enter="login"
-
           ></v-text-field>
         </v-form>
       </v-card-text>
       <v-card-actions class="d-block">
         <div d-block>
-          <v-btn depressed tile small color="#3B2929" block @click="login"><span class="grey--text text--lighten-5">Login</span></v-btn>
+          <v-btn depressed tile small color="#3B2929" block @click="login">
+            <span class="grey--text text--lighten-5">Login</span>
+          </v-btn>
         </div>
         <div d-block class="mt-1">
-          <v-btn depressed tile small color="#3B2929" block @click="toSignup"><span class="grey--text text--lighten-5">Regístrate</span></v-btn>
+          <v-btn depressed tile small color="#3B2929" block @click="toSignup">
+            <span class="grey--text text--lighten-5">Regístrate</span>
+          </v-btn>
         </div>
       </v-card-actions>
     </v-card>
   </div>
 </template>
 <script>
-import Api from '../services/Api'
+import Api from "../services/Api";
 export default {
   data() {
     return {
@@ -53,34 +50,40 @@ export default {
     };
   },
   methods: {
-    login(){
+    login() {
       const user = {
         name: this.userName,
         email: this.email,
         password: this.userPassword
-      }
+      };
       Api.login(user)
         .then(response => {
-          localStorage.setItem("token", response.token);
-          this.$root.$emit("log", true);
-          this.$router.push("/admin");
+          if (response.token) {
+            localStorage.setItem("token", response.token);
+            this.$root.$emit("log", true);
+            this.$router.push("/admin");
+          } else {
+            this.emailRules = ["Wrong e-mail"]
+            this.passwordRule = ["Wrong password"]
+          }
         })
         .catch(err => console.log(err));
     },
     toSignup() {
       this.$router.push("/signup");
-    },
+    }
   }
 };
 </script>
 <style lang="scss" scoped>
 .vCard {
   width: 50%;
-  margin: 12px auto
+  margin: 12px auto;
 }
 
 @media screen and (max-width: 600px) {
   .vCard {
     width: 100%;
-  }  
-}</style>
+  }
+}
+</style>

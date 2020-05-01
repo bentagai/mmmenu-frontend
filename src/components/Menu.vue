@@ -72,11 +72,6 @@ export default {
     status: false,
     windowWidth: ""
   }),
-  computed: {
-    status() {
-      return this.status;
-    }
-  },
   methods: {
     toAdmin() {
       //if (!localStorage.getItem("token")) {

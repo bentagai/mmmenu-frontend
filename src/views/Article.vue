@@ -38,12 +38,13 @@ export default {
 
   computed: {
     formatDate() {
-      let date = this.article.created_at;
-      return date.split("T")[0];
+      if (this.article && this.article.created_at) {
+       return this.article.created_at.split("T")[0];
+      }
     }
   },
 
-  mounted() {
+  created() {
     Api.getArticleById(this.$route.params.id).then(
       article => (this.article = article)
     );
