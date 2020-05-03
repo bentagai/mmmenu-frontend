@@ -7,6 +7,7 @@ import Signup from '../views/Signup.vue'
 import CreateArticle from '../views/CreateArticle.vue'
 import Article from '../views/Article.vue'
 import UpdateArticle from '../views/UpdateArticle.vue'
+import UserAccount from '../views/UserAccount.vue'
 
 Vue.use(VueRouter)
 
@@ -62,6 +63,20 @@ const routes = [{
   path: '/update/:id',
   name: 'Update',
   component: UpdateArticle,
+  beforeEnter(to, from, next) {
+    if (!localStorage.getItem("token")) {
+      next({
+        name: 'Login'
+      })
+    } else {
+      next()
+    }
+  }
+},
+{
+  path: '/account',
+  name: 'Accunt',
+  component: UserAccount,
   beforeEnter(to, from, next) {
     if (!localStorage.getItem("token")) {
       next({

@@ -50,5 +50,13 @@ export default {
       }
     })
     return response.data
+  },
+  async getUserById () {
+    const response = await API.get('/users/me', {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    return response.data
   }
 }

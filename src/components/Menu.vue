@@ -55,6 +55,10 @@
             </v-list-item>
             <v-divider class="grey darken-4"></v-divider>
             <v-list-item class="mb-0">
+              <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toYourAccount">Tu cuenta</v-list-item-title>
+            </v-list-item>
+            <v-divider class="grey darken-4"></v-divider>
+            <v-list-item class="mb-0">
               <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="logout">Cerrar Sesión</v-list-item-title>
             </v-list-item>
             <v-divider class="grey darken-4"></v-divider>
@@ -85,15 +89,16 @@ export default {
     toCreate() {
       this.$router.push("/create");
     },
+    toYourAccount() {
+      this.$router.push("/account");
+
+    }
+    ,
     logout() {
       localStorage.removeItem("token");
       this.status = false;
       this.$router.push("/");
     },
-    toBack() {
-      this.$router.go(-1)
-      this.back = false
-    }
   },
   mounted() {
     this.status = localStorage.getItem("token") ? true : false;
