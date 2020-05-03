@@ -11,16 +11,16 @@
         <p class="subtitle-2 font-weight-regular">{{ formatDate }}</p>
       </v-card-text>
       <v-card-actions>
-        <v-btn text small color=" accent-4" @click.stop.prevent="update(card._id)">Actualizar</v-btn>
-        <v-btn text small color=" accent-4" @click.stop.prevent="dialog = true">Eliminar</v-btn>
+        <v-btn text small color="accent-4" @click.stop.prevent="update(card._id)">Actualizar</v-btn>
+        <v-btn text small color="accent-4" @click.stop.prevent="dialog = true">Eliminar</v-btn>
         
         <v-row justify="center">
           <v-dialog v-model="dialog" max-width="290">
-            <v-card>
-              <v-card-title class="headline">Eliminar</v-card-title>
-              <v-card-actions>
-                <v-btn color="green darken-1" text @click="dialog = false">No</v-btn>
-                <v-btn color="green darken-1" text @click="erase(card._id)">Si</v-btn>
+            <v-card color="amber lighten-5">
+              <v-card-title class="title font-weight-regular d-flex justify-center">Eliminar</v-card-title>
+              <v-card-actions class="d-flex justify-center">
+                <v-btn text small color="accent-4" @click="dialog = false">No</v-btn>
+                <v-btn text small color="accent-4" @click="erase(card._id)">Si</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>

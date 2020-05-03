@@ -74,11 +74,7 @@ export default {
   }),
   methods: {
     toAdmin() {
-      //if (!localStorage.getItem("token")) {
-      //  this.$router.push("/login");
-      //} else {
-        this.$router.push("/admin");
-      //}
+      this.$router.push("/admin");
     },
     toLogin() {
       this.$router.push("/login");
@@ -93,9 +89,13 @@ export default {
       localStorage.removeItem("token");
       this.status = false;
       this.$router.push("/");
+    },
+    toBack() {
+      this.$router.go(-1)
+      this.back = false
     }
   },
-  mounted: function() {
+  mounted() {
     this.status = localStorage.getItem("token") ? true : false;
     this.$root.$on("log", status => {
       this.status = status;

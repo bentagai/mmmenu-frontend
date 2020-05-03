@@ -51,7 +51,7 @@ export default {
       subtitle: "",
       subtitleRule: [v => !!v || "Subtitle is required"],
       editor: ClassicEditor,
-      text: '<p>Type...</p>',
+      text: '<p></p>',
       editorConfig: {},
       textRule: [v => !!v || "Main text is required"],
       dialog: false

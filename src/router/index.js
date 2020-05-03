@@ -15,7 +15,7 @@ const routes = [{
   name: 'Admin',
   component: Admin,
   beforeEnter(to, from, next) {
-    if (!localStorage.getItem("token") || localStorage.getItem("token") === undefined) {
+    if (!localStorage.getItem("token")) {
       next({
         path: '/login'
       })
