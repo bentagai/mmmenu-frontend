@@ -35,7 +35,7 @@ export default {
       userPassword: "",
       passwordRule: [
         v => !!v || "Password is required",
-        v => v.length >= 6 || "Password must be more than 10 characters"
+        v => v.length >= 6 || "Password must be more than 5 characters"
       ],
       email: "",
       emailRules: [

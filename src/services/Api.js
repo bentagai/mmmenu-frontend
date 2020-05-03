@@ -58,5 +58,16 @@ export default {
       }
     })
     return response.data
+  },
+  async updateUser(updUser) {
+    const response = await API.put('users/me', {
+      ...updUser
+    },
+    {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    return response.data
   }
 }
