@@ -1,7 +1,7 @@
 <template>
   <div class="vCard">
     <v-card outlined tile width="100%" class="grey lighten-3">
-      <v-card-title class="title font-weight-regular d-flex justify-center">Tu Datos</v-card-title>
+      <v-card-title class="title font-weight-regular d-flex justify-center">Tus Datos</v-card-title>
       <v-card-text>
         <v-form>
           <v-text-field label="Username" v-model="userName"></v-text-field>
@@ -83,5 +83,15 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
+.vCard {
+  width: 50%;
+  margin: 12px auto;
+}
+
+@media screen and (max-width: 600px) {
+  .vCard {
+    width: 100%;
+  }
+}
 </style>
