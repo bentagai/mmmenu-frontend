@@ -69,5 +69,13 @@ export default {
       }
     })
     return response.data
-  }
+  },
+  async deleteUserById() {
+    const response = await API.delete('users/me', {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    return response.data
+  },
 }

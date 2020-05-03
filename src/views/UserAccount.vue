@@ -9,17 +9,39 @@
         </v-form>
       </v-card-text>
       <v-card-actions class="d-flex justify-center">
-        <v-btn depressed tile small color="#3B2929" block @click="updateUser">
-          <span class="grey--text text--lighten-5">Actualizar</span>
-        </v-btn>
-
+        <div>
+          <v-btn depressed tile small color="#3B2929" block @click="updateUser">
+            <span class="grey--text text--lighten-5">Actualizar</span>
+          </v-btn>
+        </div>
+          <v-dialog v-model="dialog" hide-overlay persistent width="300">
+            <v-card color="#3B2929" dark>
+              <v-card-text
+                class="subtitle-2 font-weight-regular text-center grey--text text--lighten-5 pt-2"
+                height="100px"
+              >
+                Actualizando
+                <v-progress-linear
+                  indeterminate
+                  class="mt-2"
+                  background-color="brown darken-1"
+                  color="amber lighten-5"
+                ></v-progress-linear>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
+          <div>
+            <v-btn depressed tile small color="#3B2929" block @click="deleteUserById">
+            <span class="grey--text text--lighten-5">Actualizar</span>
+            </v-btn>
+          </div>
         <v-dialog v-model="dialog" hide-overlay persistent width="300">
           <v-card color="#3B2929" dark>
             <v-card-text
               class="subtitle-2 font-weight-regular text-center grey--text text--lighten-5 pt-2"
               height="100px"
             >
-              Actualizando
+              Eliminar
               <v-progress-linear
                 indeterminate
                 class="mt-2"
@@ -29,7 +51,6 @@
             </v-card-text>
           </v-card>
         </v-dialog>
-
       </v-card-actions>
     </v-card>
   </div>
@@ -72,7 +93,14 @@ export default {
         this.dialog = true;
         })
         .catch(err => console.log(err));
-    }
+    },
+    deleteUserById() {
+      Api.deleteUserById().then(response => {
+        this.dialog = true;
+        })
+        .catch(err => console.log(err));
+    },
+
   },
   created() {
     Api.getUserById().then(user => {
