@@ -62,7 +62,6 @@ export default {
             localStorage.setItem("token", response.token);
             localStorage.setItem("userType", response.is_admin);
             if (response.is_admin === true) {
-              this
               this.$router.push("/admin");
             } else {
               this.$router.push("/");

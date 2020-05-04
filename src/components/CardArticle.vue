@@ -10,7 +10,7 @@
       <v-card-text class="pb-0">
         <p class="subtitle-2 font-weight-regular">{{ formatDate }}</p>
       </v-card-text>
-      <v-card-actions>
+      <v-card-actions v-if="user">
         <v-btn text small color="accent-4" @click.stop.prevent="update(card._id)">Actualizar</v-btn>
         <v-btn text small color="accent-4" @click.stop.prevent="dialog = true">Eliminar</v-btn>
         
@@ -19,6 +19,7 @@
         </v-row>
 
       </v-card-actions>
+      <div v-else></div>
     </v-card>
   </div>
 </template>
@@ -34,7 +35,8 @@ export default {
     }
   },
   props: {
-    card: Object
+    card: Object,
+    user: Boolean
   },
   components: {
     PopupConfirm

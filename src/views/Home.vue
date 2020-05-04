@@ -4,7 +4,7 @@
     <v-container class="container">
       <v-row dense>
         <v-col md="6" sm="6" xs="12" v-for="(article, idx) in articles" :key="idx">
-          <CardArticle :card="article"/>
+          <CardArticle :card="article" :user="status" />
         </v-col>
       </v-row>
     </v-container>
@@ -19,14 +19,16 @@ export default {
   name: "Home",
   data() {
     return {
-      articles: []
+      articles: [],
+      status: false
     }
   },
   components: {
    CardArticle
   },
   mounted() {
-    Api.getAllArticles().then(articles => (this.articles = articles.reverse()));
+    Api.getAllArticles()
+      .then(articles => this.articles = articles.reverse());
   }
 };
 </script>
