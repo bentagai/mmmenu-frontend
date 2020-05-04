@@ -10,7 +10,7 @@
             <ckeditor :editor="editor" v-model="text" :config="editorConfig" counter></ckeditor>
           </v-form>
         </v-card-text>
-        <v-card-actions class="d-block">
+        <v-card-actions class="d-flex justify-center">
           <div class="text-center">
             <div d-block>
               <v-btn depressed tile small color="#3B2929" block @click="update">
