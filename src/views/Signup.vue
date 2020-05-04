@@ -55,7 +55,7 @@ export default {
         .then(response => {
           localStorage.setItem("token", response.token);
           this.$root.$emit("log", true);
-          this.$router.push("/admin");
+          this.$router.push("/");
         })
         .catch(err => console.log(err));
     }

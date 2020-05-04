@@ -60,11 +60,17 @@ export default {
         .then(response => {
           if (response.token) {
             localStorage.setItem("token", response.token);
-            this.$root.$emit("log", true);
-            this.$router.push("/admin");
+            localStorage.setItem("userType", response.is_admin);
+            if (response.is_admin === true) {
+              this
+              this.$router.push("/admin");
+            } else {
+              this.$router.push("/");
+            }
+            this.$root.$emit("log", response.is_admin);
           } else {
-            this.emailRules = ["Wrong e-mail"]
-            this.passwordRule = ["Wrong password"]
+            this.emailRules = ["Wrong e-mail"];
+            this.passwordRule = ["Wrong password"];
           }
         })
         .catch(err => console.log(err));

@@ -19,10 +19,6 @@
             <v-icon>mdi-close</v-icon>
           </v-list-item>
           <v-divider class="grey darken-4"></v-divider>
-          <v-list-item class="mb-0">
-            <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toAdmin">Admin</v-list-item-title>
-          </v-list-item>
-          <v-divider class="grey darken-4"></v-divider>
           <!-- <v-list-item>
               <v-list-item-title>Qué Hacer</v-list-item-title>
               <v-list-item-icon>
@@ -41,6 +37,10 @@
           </v-list-item>-->
           <div v-if="!status">
             <v-list-item class="mb-0">
+              <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toHome">Home</v-list-item-title>
+            </v-list-item>
+            <v-divider class="grey darken-4"></v-divider>
+            <v-list-item class="mb-0">
               <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toSignup">Registrarse</v-list-item-title>
             </v-list-item>
             <v-divider class="grey darken-4"></v-divider>
@@ -49,9 +49,27 @@
             </v-list-item>
             <v-divider class="grey darken-4"></v-divider>
           </div>
-          <div v-else>
+          <div v-else-if="admin">
+            <v-list-item class="mb-0">
+              <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toAdmin">Admin</v-list-item-title>
+            </v-list-item>
+            <v-divider class="grey darken-4"></v-divider>
             <v-list-item class="mb-0">
               <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toCreate">Crear Artículo</v-list-item-title>
+            </v-list-item>
+            <v-divider class="grey darken-4"></v-divider>
+            <v-list-item class="mb-0">
+              <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toYourAccount">Tu cuenta</v-list-item-title>
+            </v-list-item>
+            <v-divider class="grey darken-4"></v-divider>
+            <v-list-item class="mb-0">
+              <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="logout">Cerrar Sesión</v-list-item-title>
+            </v-list-item>
+            <v-divider class="grey darken-4"></v-divider>
+          </div>
+          <div v-else>
+            <v-list-item class="mb-0">
+              <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toHome">Home</v-list-item-title>
             </v-list-item>
             <v-divider class="grey darken-4"></v-divider>
             <v-list-item class="mb-0">
@@ -74,9 +92,13 @@ export default {
   data: () => ({
     drawer: false,
     status: false,
-    windowWidth: ""
+    windowWidth: "",
+    admin: ""
   }),
   methods: {
+    toHome() {
+      this.$router.push("/");
+    },
     toAdmin() {
       this.$router.push("/admin");
     },
@@ -91,11 +113,11 @@ export default {
     },
     toYourAccount() {
       this.$router.push("/account");
-
     }
     ,
     logout() {
       localStorage.removeItem("token");
+      localStorage.removeItem("userType");
       this.status = false;
       this.$router.push("/");
     },
@@ -103,8 +125,12 @@ export default {
   mounted() {
     this.status = localStorage.getItem("token") ? true : false;
     this.$root.$on("log", status => {
-      this.status = status;
+      this.status = true;
+      this.admin = status
     });
+    this.$root.$on("deleted", status => {
+      this.status = status;
+    })
     this.windowWidth = window.innerWidth < 600 ? "75%" : "50%";
     window.onresize = () => {
       this.windowWidth = window.innerWidth < 600 ? "75%" : "50%";

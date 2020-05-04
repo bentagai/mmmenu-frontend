@@ -11,82 +11,84 @@ import UserAccount from '../views/UserAccount.vue'
 
 Vue.use(VueRouter)
 
-const routes = [{
-  path: '/admin',
-  name: 'Admin',
-  component: Admin,
-  beforeEnter(to, from, next) {
-    if (!localStorage.getItem("token")) {
-      next({
-        path: '/login'
-      })
-    } else {
-      next()
+const routes = [
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin,
+    beforeEnter (to, from, next) {
+      if (localStorage.getItem('userType') === 'false') {
+        next({
+          name: 'Login'
+        })
+      } else {
+        next()
+      }
+    }
+  },
+  {
+    path: '/create',
+    name: 'Create',
+    component: CreateArticle,
+    beforeEnter(to, from, next) {
+      if (localStorage.getItem('userType') === 'false') {
+        next({
+          name: 'Login'
+        })
+      } else {
+        next()
+      }
+    }
+  },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Signup
+  },
+  {
+    path: '/article/:id',
+    name: 'Article',
+    component: Article
+  },
+  {
+    path: '/update/:id',
+    name: 'Update',
+    component: UpdateArticle,
+    beforeEnter(to, from, next) {
+      if (localStorage.getItem('userType') === 'false') {
+        next({
+          name: 'Login'
+        })
+      } else {
+        next()
+      }
+    }
+  },
+  {
+    path: '/account',
+    name: 'Accunt',
+    component: UserAccount,
+    beforeEnter(to, from, next) {
+      if (!localStorage.getItem("token")) {
+        next({
+          name: 'Login'
+        })
+      } else {
+        next()
+      }
     }
   }
-},
-{
-  path: '/create',
-  name: 'Create',
-  component: CreateArticle,
-  beforeEnter(to, from, next) {
-    if (!localStorage.getItem("token")) {
-      next({
-        name: 'Login'
-      })
-    } else {
-      next()
-    }
-  }
-},
-{
-  path: '/',
-  name: 'Home',
-  component: Home
-},
-{
-  path: '/login',
-  name: 'Login',
-  component: Login
-},
-{
-  path: '/signup',
-  name: 'Signup',
-  component: Signup
-},
-{
-  path: '/article/:id',
-  name: 'Article',
-  component: Article
-},
-{
-  path: '/update/:id',
-  name: 'Update',
-  component: UpdateArticle,
-  beforeEnter(to, from, next) {
-    if (!localStorage.getItem("token")) {
-      next({
-        name: 'Login'
-      })
-    } else {
-      next()
-    }
-  }
-},
-{
-  path: '/account',
-  name: 'Accunt',
-  component: UserAccount,
-  beforeEnter(to, from, next) {
-    if (!localStorage.getItem("token")) {
-      next({
-        name: 'Login'
-      })
-    } else {
-      next()
-    }
-  }
-}]
+]
 
 const router = new VueRouter({
   mode: 'history',

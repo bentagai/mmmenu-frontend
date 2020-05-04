@@ -14,44 +14,22 @@
             <span class="grey--text text--lighten-5">Actualizar Datos</span>
           </v-btn>
         </div>
-        <v-dialog v-model="dialog" hide-overlay persistent width="300">
-          <v-card color="#3B2929" dark>
-            <v-card-text
-              class="subtitle-2 font-weight-regular text-center grey--text text--lighten-5 pt-2"
-              height="100px"
-            >
-              Actualizando Datos
-              <v-progress-linear
-                indeterminate
-                class="mt-2"
-                background-color="brown darken-1"
-                color="amber lighten-5"
-              ></v-progress-linear>
-            </v-card-text>
-          </v-card>
-        </v-dialog>
+        <PopupTime :text="'Actualiando datos'" :dialog="dialog" />        
 
         <div d-block class="mt-1">
-          <v-btn depressed tile small color="#3B2929" block @click="deleteUserById">
+          <v-btn depressed tile small color="#3B2929" block @click="userDeleted = true">
             <span class="grey--text text--lighten-5">Eliminar cuenta</span>
           </v-btn>
         </div>
-        <v-dialog v-model="userDeleted" hide-overlay persistent width="300">
-          <v-card color="#3B2929" dark>
-            <v-card-text
-              class="subtitle-2 font-weight-regular text-center grey--text text--lighten-5 pt-2"
-              height="100px"
-            >
-              Eliminando Cuenta
-              <v-progress-linear
-                indeterminate
-                class="mt-2"
-                background-color="brown darken-1"
-                color="amber lighten-5"
-              ></v-progress-linear>
-            </v-card-text>
-          </v-card>
-        </v-dialog>
+        <v-dialog v-model="userDeleted" max-width="290">
+            <v-card color="amber lighten-5">
+              <v-card-title class="title font-weight-regular d-flex justify-center">Eliminar</v-card-title>
+              <v-card-actions class="d-flex justify-center">
+                <v-btn text small color="accent-4" @click="dialog = false">No</v-btn>
+                <v-btn text small color="accent-4" @click="deleteUserById">Si</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
       </v-card-actions>
     </v-card>
   </div>
@@ -59,6 +37,7 @@
 
 <script>
 import Api from "../services/Api";
+import PopupTime from "../components/PopupTime"
 
 export default {
   data() {
@@ -78,6 +57,9 @@ export default {
       dialog: false,
       userDeleted:false
     };
+  },
+  components: {
+    PopupTime
   },
   watch: {
     dialog(val) {
@@ -102,8 +84,10 @@ export default {
     deleteUserById() {
       Api.deleteUserById()
         .then(response => {
-          this.userDeleted = true;
-          setTimeout(() => (this.$router.push('/')), 1500);
+          localStorage.removeItem("token");
+          localStorage.removeItem("userType");
+          this.$root.$emit("deleted", false)
+          this.$router.push('/');
         })
         .catch(err => console.log(err));
     }
