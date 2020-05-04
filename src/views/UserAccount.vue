@@ -11,7 +11,7 @@
       <v-card-actions class="d-block">
         <div d-block>
           <v-btn depressed tile small color="#3B2929" block @click="updateUser">
-            <span class="grey--text text--lighten-5">Actualizar</span>
+            <span class="grey--text text--lighten-5">Actualizar Datos</span>
           </v-btn>
         </div>
         <v-dialog v-model="dialog" hide-overlay persistent width="300">
@@ -20,7 +20,7 @@
               class="subtitle-2 font-weight-regular text-center grey--text text--lighten-5 pt-2"
               height="100px"
             >
-              Actualizando
+              Actualizando Datos
               <v-progress-linear
                 indeterminate
                 class="mt-2"
@@ -30,18 +30,19 @@
             </v-card-text>
           </v-card>
         </v-dialog>
-          <!-- <div>
-            <v-btn depressed tile small color="#3B2929" block @click="deleteUserById">
-            <span class="grey--text text--lighten-5">Actualizar</span>
-            </v-btn>
-          </div>
-        <v-dialog v-model="dialog" hide-overlay persistent width="300">
+
+        <div d-block class="mt-1">
+          <v-btn depressed tile small color="#3B2929" block @click="deleteUserById">
+            <span class="grey--text text--lighten-5">Eliminar cuenta</span>
+          </v-btn>
+        </div>
+        <v-dialog v-model="userDeleted" hide-overlay persistent width="300">
           <v-card color="#3B2929" dark>
             <v-card-text
               class="subtitle-2 font-weight-regular text-center grey--text text--lighten-5 pt-2"
               height="100px"
             >
-              Eliminar
+              Eliminando Cuenta
               <v-progress-linear
                 indeterminate
                 class="mt-2"
@@ -50,7 +51,7 @@
               ></v-progress-linear>
             </v-card-text>
           </v-card>
-        </v-dialog> -->
+        </v-dialog>
       </v-card-actions>
     </v-card>
   </div>
@@ -74,13 +75,16 @@ export default {
         v => !!v || "E-mail is required",
         v => /.+@.+\..+/.test(v) || "E-mail must be valid"
       ],
-      dialog: false
+      dialog: false,
+      userDeleted:false
     };
   },
   watch: {
     dialog(val) {
       if (!val) return;
       setTimeout(() => (this.dialog = false), 1500);
+      setTimeout(() => (this.userDeleted = false), 1500);
+
     }
   },
   methods: {
@@ -89,18 +93,20 @@ export default {
         name: this.userName,
         email: this.email
       };
-      Api.updateUser(updUser).then(response => {
-        this.dialog = true;
+      Api.updateUser(updUser)
+        .then(response => {
+          this.dialog = true;
         })
         .catch(err => console.log(err));
     },
     deleteUserById() {
-      Api.deleteUserById().then(response => {
-        this.dialog = true;
+      Api.deleteUserById()
+        .then(response => {
+          this.userDeleted = true;
+          setTimeout(() => (this.$router.push('/')), 1500);
         })
         .catch(err => console.log(err));
-    },
-
+    }
   },
   created() {
     Api.getUserById().then(user => {
