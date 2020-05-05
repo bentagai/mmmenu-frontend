@@ -70,6 +70,14 @@ export default {
     })
     return response.data
   },
+  async updateUserPassword(newPassword) {
+    const response = await API.put('users/me/password', newPassword, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    return response.data
+  },
   async deleteUserById() {
     const response = await API.delete('users/me', {
       headers: {
