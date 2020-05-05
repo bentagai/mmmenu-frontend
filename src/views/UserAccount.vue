@@ -21,15 +21,7 @@
             <span class="grey--text text--lighten-5">Eliminar cuenta</span>
           </v-btn>
         </div>
-        <v-dialog v-model="userDeleted" max-width="290">
-            <v-card color="amber lighten-5">
-              <v-card-title class="title font-weight-regular d-flex justify-center">Eliminar</v-card-title>
-              <v-card-actions class="d-flex justify-center">
-                <v-btn text small color="accent-4" @click="dialog = false">No</v-btn>
-                <v-btn text small color="accent-4" @click="deleteUserById">Si</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+        <PopupConfirm :text="'Eliminar'" :dialog="userDeleted" :event="deleteUserById" :close="close"/> 
       </v-card-actions>
     </v-card>
   </div>
@@ -38,6 +30,7 @@
 <script>
 import Api from "../services/Api";
 import PopupTime from "../components/PopupTime"
+import PopupConfirm from "../components/PopupConfirm"
 
 export default {
   data() {
@@ -59,7 +52,8 @@ export default {
     };
   },
   components: {
-    PopupTime
+    PopupTime,
+    PopupConfirm
   },
   watch: {
     dialog(val) {
@@ -90,6 +84,9 @@ export default {
           this.$router.push('/');
         })
         .catch(err => console.log(err));
+    },
+    close() {
+      this.userDeleted = false;
     }
   },
   created() {

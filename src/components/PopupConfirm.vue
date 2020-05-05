@@ -4,7 +4,7 @@
       <v-card color="amber lighten-5">
         <v-card-title class="title font-weight-regular d-flex justify-center">{{ text }}</v-card-title>
         <v-card-actions class="d-flex justify-center">
-          <v-btn text small color="accent-4" @click="dialog = false">No</v-btn>
+          <v-btn text small color="accent-4" @click="close">No</v-btn>
           <v-btn text small color="accent-4" @click="event(id)">Si</v-btn>
         </v-card-actions>
       </v-card>
@@ -18,6 +18,7 @@ export default {
   props: {
     text: String,
     dialog: Boolean,
+    close: Function,
     event: Function,
     id: String 
   }

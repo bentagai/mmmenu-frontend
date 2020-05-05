@@ -15,7 +15,7 @@
         <v-btn text small color="accent-4" @click.stop.prevent="dialog = true">Eliminar</v-btn>
         
         <v-row justify="center">
-          <PopupConfirm :text="'Eliminar'" :dialog="dialog" :event="erase" :id="card._id" />
+          <PopupConfirm :text="'Eliminar'" :dialog="dialog" :event="erase" :id="card._id" :close="close"/>
         </v-row>
 
       </v-card-actions>
@@ -59,6 +59,9 @@ export default {
     },
     ToArticle(id) {
       this.$router.push(`/article/${id}`);
+    },
+    close() {
+      this.dialog = false;
     }
   }
 };
