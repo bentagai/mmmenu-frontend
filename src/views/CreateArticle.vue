@@ -13,6 +13,7 @@
               :rules="subtitleRule"
               class="mb-10"
             ></v-text-field>
+            <!-- <input class="my-2" type="file" @change="photo"> -->
             <ckeditor :editor="editor" v-model="text" :config="editorConfig" counter></ckeditor>
           </v-form>
         </v-card-text>
@@ -35,6 +36,7 @@
 import Api from "../services/Api";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import PopupTime from "../components/PopupTime"
+// import firebase from 'firebase'
 
 export default {
   data() {
@@ -47,7 +49,9 @@ export default {
       text: "<p></p>",
       editorConfig: {},
       textRule: [v => !!v || "Main text is required"],
-      dialog: false
+      dialog: false,
+      // file: null,
+      // picture: ''
     };
   },
   components: {
@@ -60,10 +64,26 @@ export default {
     }
   },
   methods: {
+    //  photo (event) {
+    //   this.file = event.target.files[0]
+    //   this.upload()
+    // },
+    // upload () {
+    //   const storageRef = firebase.storage().ref(`imagenes/${this.file.name}`)
+    //   const task = storageRef.put(this.file)
+
+    //   task.on('state_changed', () => {
+    //     task.snapshot.ref.getDownloadURL().then((url) => {
+    //       this.picture = url
+    //     })
+    //   })
+    // },
     create() {
+      // this.upload()
       const article = {
         title: this.title,
         subtitle: this.subtitle,
+        // img_url: this.picture,
         text: this.text
       };
       Api.createArticle(article).then(response => {
