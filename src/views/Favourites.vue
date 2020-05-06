@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <h1>Welcome to Mmmenu</h1> -->
+    <div class="title font-weight-regular d-flex justify-center">Mis Favoritos</div>
     <v-container class="container">
       <v-row dense>
         <v-col md="6" sm="6" xs="12" v-for="(article, idx) in articles" :key="idx">
@@ -12,35 +12,30 @@
 </template>
 
 <script>
-import Api from "../services/Api";
-import CardArticle from "../components/CardArticle";
+import Api from '../services/Api'
+import CardArticle from '../components/CardArticle'
 
 export default {
-<<<<<<< HEAD
-  name: 'Home'
-}
-=======
-  name: "Home",
-  data() {
+  name: 'Favourites',
+  data () {
     return {
       articles: [],
       status: false
     }
   },
   components: {
-   CardArticle
+    CardArticle
   },
-  created() {
+  created () {
     if (localStorage.getItem('userType') === 'true') {
       this.status = true
     } else {
-      this.status = false;
+      this.status = false
     }
   },
-  mounted() {
-    Api.getAllArticles()
-      .then(articles => this.articles = articles.reverse());
+  mounted () {
+    Api.getAllFavourites()
+      .then(articles => this.articles = articles.reverse())
   }
-};
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
+}
 </script>

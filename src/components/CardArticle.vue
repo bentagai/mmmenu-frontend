@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card outlined tile color="#fafafa" @click="ToArticle(card._id)">
-      <v-img height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"></v-img>
+      <v-img src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"></v-img>
       <v-card-title class="headline font-weight-regular">{{ card.title }}</v-card-title>
       <v-card-subtitle
         class="title font-weight-regular text-truncate pb-2"
@@ -10,43 +10,48 @@
       <v-card-text class="pb-0">
         <p class="subtitle-2 font-weight-regular">{{ formatDate }}</p>
       </v-card-text>
-      <v-card-actions>
+      <v-card-actions v-if="user === true">
         <v-btn text small color="accent-4" @click.stop.prevent="update(card._id)">Actualizar</v-btn>
         <v-btn text small color="accent-4" @click.stop.prevent="dialog = true">Eliminar</v-btn>
 
         <v-row justify="center">
-          <v-dialog v-model="dialog" max-width="290">
-            <v-card color="amber lighten-5">
-              <v-card-title class="title font-weight-regular d-flex justify-center">Eliminar</v-card-title>
-              <v-card-actions class="d-flex justify-center">
-                <v-btn text small color="accent-4" @click="dialog = false">No</v-btn>
-                <v-btn text small color="accent-4" @click="erase(card._id)">Si</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+          <PopupConfirm :text="'Eliminar'" :dialog="dialog" :event="erase" :id="card._id" :close="close"/>
         </v-row>
 
+      </v-card-actions>
+      <v-card-actions v-else>
+        <v-icon>mdi-heart</v-icon>
       </v-card-actions>
     </v-card>
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import Api from '../services/Api'
+=======
+import Api from "../services/Api";
+import PopupConfirm from "../components/PopupConfirm"
+
+>>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
 export default {
   data () {
     return {
       dialog: false
     }
   },
+  props: {
+    card: Object,
+    user: Boolean
+  },
+  components: {
+    PopupConfirm
+  },
   computed: {
     formatDate () {
       const date = this.card.created_at
       return date.split('T')[0]
     }
-  },
-  props: {
-    card: Object
   },
   methods: {
     erase (article) {
@@ -58,8 +63,16 @@ export default {
     update (id) {
       this.$router.push(`/update/${id}`)
     },
+<<<<<<< HEAD
     ToArticle (id) {
       this.$router.push(`/article/${id}`)
+=======
+    ToArticle(id) {
+      this.$router.push(`/article/${id}`);
+    },
+    close() {
+      this.dialog = false;
+>>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
     }
   }
 }

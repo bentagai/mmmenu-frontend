@@ -11,8 +11,11 @@
               label="Subtitle"
               v-model="subtitle"
               :rules="subtitleRule"
-              class="mb-10"
+              class="mb-1"
             ></v-text-field>
+            <!-- <input class="my-2" type="file" @change="photo"> -->
+            <v-select :items="items" v-model="category" label="Category" class="mb-10"></v-select>
+            {{category}}
             <ckeditor :editor="editor" v-model="text" :config="editorConfig" counter></ckeditor>
           </v-form>
         </v-card-text>
@@ -23,38 +26,25 @@
                 <span class="grey--text text--lighten-5">Publicar</span>
               </v-btn>
             </div>
-            <v-dialog v-model="dialog" hide-overlay persistent width="300">
-              <v-card color="#3B2929" dark>
-                <v-card-text
-                  class="subtitle-2 font-weight-regular text-center grey--text text--lighten-5 pt-2"
-                  height="100px"
-                >
-                  Publicando
-                  <v-progress-linear
-                    indeterminate
-                    class="mt-2"
-                    background-color="brown darken-1"
-                    color="amber lighten-5"
-                  ></v-progress-linear>
-                </v-card-text>
-              </v-card>
-            </v-dialog>
+            <PopupTime :text="'Publicando'" :dialog="dialog" />
           </div>
         </v-card-actions>
       </v-card>
     </div>
   </div>
-
-  <!-- <div d-block>
-    <v-btn depressed tile small color="#3B2929" block @click="create">
-      <span class="grey--text text--lighten-5">Publicar</span>
-    </v-btn>
-  </div>-->
 </template>
 
 <script>
+<<<<<<< HEAD
 import Api from '../services/Api'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+=======
+import Api from "../services/Api";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import PopupTime from "../components/PopupTime";
+// import firebase from 'firebase'
+
+>>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
 export default {
   data () {
     return {
@@ -65,9 +55,22 @@ export default {
       editor: ClassicEditor,
       text: '<p></p>',
       editorConfig: {},
+<<<<<<< HEAD
       textRule: [v => !!v || 'Main text is required'],
       dialog: false
     }
+=======
+      textRule: [v => !!v || "Main text is required"],
+      dialog: false,
+      items: ["comer", "hacer", "comprar"],
+      category: "",
+      // file: null,
+      // picture: ''
+    };
+>>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
+  },
+  components: {
+    PopupTime
   },
   watch: {
     dialog (val) {
@@ -76,10 +79,31 @@ export default {
     }
   },
   methods: {
+<<<<<<< HEAD
     create () {
+=======
+    //  photo (event) {
+    //   this.file = event.target.files[0]
+    //   this.upload()
+    // },
+    // upload () {
+    //   const storageRef = firebase.storage().ref(`imagenes/${this.file.name}`)
+    //   const task = storageRef.put(this.file)
+
+    //   task.on('state_changed', () => {
+    //     task.snapshot.ref.getDownloadURL().then((url) => {
+    //       this.picture = url
+    //     })
+    //   })
+    // },
+    create() {
+      // this.upload()
+>>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
       const article = {
         title: this.title,
         subtitle: this.subtitle,
+        category: this.category,
+        // img_url: this.picture,
         text: this.text
       }
       Api.createArticle(article).then(response => {
