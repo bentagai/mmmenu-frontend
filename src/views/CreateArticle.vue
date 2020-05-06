@@ -53,42 +53,42 @@
 </template>
 
 <script>
-import Api from "../services/Api";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import Api from '../services/Api'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 export default {
-  data() {
+  data () {
     return {
-      title: "",
-      titleRule: [v => !!v || "Title is required"],
-      subtitle: "",
-      subtitleRule: [v => !!v || "Subtitle is required"],
+      title: '',
+      titleRule: [v => !!v || 'Title is required'],
+      subtitle: '',
+      subtitleRule: [v => !!v || 'Subtitle is required'],
       editor: ClassicEditor,
-      text: "<p></p>",
+      text: '<p></p>',
       editorConfig: {},
-      textRule: [v => !!v || "Main text is required"],
+      textRule: [v => !!v || 'Main text is required'],
       dialog: false
-    };
+    }
   },
   watch: {
-    dialog(val) {
-      if (!val) return;
-      setTimeout(() => (this.dialog = false), 1500);
+    dialog (val) {
+      if (!val) return
+      setTimeout(() => (this.dialog = false), 1500)
     }
   },
   methods: {
-    create() {
+    create () {
       const article = {
         title: this.title,
         subtitle: this.subtitle,
         text: this.text
-      };
+      }
       Api.createArticle(article).then(response => {
-        this.dialog = true;
-        setTimeout(() => this.$router.push("/admin"), 1500);
-      });
+        this.dialog = true
+        setTimeout(() => this.$router.push('/admin'), 1500)
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

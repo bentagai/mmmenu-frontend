@@ -28,12 +28,12 @@
               <v-list-item-icon>
                 <v-icon>mdi-arrow</v-icon>
               </v-list-item-icon>
-       
+
               <v-list-item-title>Qué Comer</v-list-item-title>
               <v-list-item-icon>
                 <v-icon>mdi-home</v-icon>
               </v-list-item-icon>
-          
+
               <v-list-item-title>Qué Comprar</v-list-item-title>
               <v-list-item-icon>
                 <v-icon>mdi-home</v-icon>
@@ -66,46 +66,46 @@
 </template>
 <script>
 export default {
-  name: "Menu",
+  name: 'Menu',
   data: () => ({
     drawer: false,
     status: false,
-    windowWidth: ""
+    windowWidth: ''
   }),
   methods: {
-    toAdmin() {
-      this.$router.push("/admin");
+    toAdmin () {
+      this.$router.push('/admin')
     },
-    toLogin() {
-      this.$router.push("/login");
+    toLogin () {
+      this.$router.push('/login')
     },
-    toSignup() {
-      this.$router.push("/signup");
+    toSignup () {
+      this.$router.push('/signup')
     },
-    toCreate() {
-      this.$router.push("/create");
+    toCreate () {
+      this.$router.push('/create')
     },
-    logout() {
-      localStorage.removeItem("token");
-      this.status = false;
-      this.$router.push("/");
+    logout () {
+      localStorage.removeItem('token')
+      this.status = false
+      this.$router.push('/')
     },
-    toBack() {
+    toBack () {
       this.$router.go(-1)
       this.back = false
     }
   },
-  mounted() {
-    this.status = localStorage.getItem("token") ? true : false;
-    this.$root.$on("log", status => {
-      this.status = status;
-    });
-    this.windowWidth = window.innerWidth < 600 ? "75%" : "50%";
+  mounted () {
+    this.status = !!localStorage.getItem('token')
+    this.$root.$on('log', status => {
+      this.status = status
+    })
+    this.windowWidth = window.innerWidth < 600 ? '75%' : '50%'
     window.onresize = () => {
-      this.windowWidth = window.innerWidth < 600 ? "75%" : "50%";
-    };
+      this.windowWidth = window.innerWidth < 600 ? '75%' : '50%'
+    }
   }
-};
+}
 </script>
 <style lang="css" scoped>
 </style>

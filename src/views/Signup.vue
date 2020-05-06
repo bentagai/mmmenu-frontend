@@ -26,41 +26,41 @@
   </div>
 </template>
 <script>
-import Api from "../services/Api";
+import Api from '../services/Api'
 export default {
-  data() {
+  data () {
     return {
-      userName: "",
+      userName: '',
       showPassword: false,
-      userPassword: "",
+      userPassword: '',
       passwordRule: [
-        v => !!v || "Password is required",
-        v => v.length >= 6 || "Password must be more than 10 characters"
+        v => !!v || 'Password is required',
+        v => v.length >= 6 || 'Password must be more than 10 characters'
       ],
-      email: "",
+      email: '',
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
       ]
-    };
+    }
   },
   methods: {
-    signup() {
+    signup () {
       const newUser = {
         name: this.userName,
         email: this.email,
         password: this.userPassword
-      };
+      }
       Api.signup(newUser)
         .then(response => {
-          localStorage.setItem("token", response.token);
-          this.$root.$emit("log", true);
-          this.$router.push("/admin");
+          localStorage.setItem('token', response.token)
+          this.$root.$emit('log', true)
+          this.$router.push('/admin')
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
     }
   }
-};
+}
 </script>
 <style lang="css" scoped>
 .vCard {

@@ -14,30 +14,30 @@
 </template>
 
 <script>
-import Api from "../services/Api";
-import CardArticle from "../components/CardArticle";
+import Api from '../services/Api'
+import CardArticle from '../components/CardArticle'
 
 export default {
-  data() {
+  data () {
     return {
       articles: []
-    };
+    }
   },
   components: {
     CardArticle
   },
   methods: {
-    toCreate() {
-      this.$router.push("/create");
+    toCreate () {
+      this.$router.push('/create')
     },
-    deleteArticle(idx) {
-      this.articles.splice(idx, 1);
+    deleteArticle (idx) {
+      this.articles.splice(idx, 1)
     }
   },
-  mounted() {
-    Api.getAllArticles().then(articles => (this.articles = articles.reverse()));
+  mounted () {
+    Api.getAllArticles().then(articles => (this.articles = articles.reverse()))
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

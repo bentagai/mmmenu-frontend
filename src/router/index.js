@@ -14,8 +14,8 @@ const routes = [{
   path: '/admin',
   name: 'Admin',
   component: Admin,
-  beforeEnter(to, from, next) {
-    if (!localStorage.getItem("token")) {
+  beforeEnter (to, from, next) {
+    if (!localStorage.getItem('token')) {
       next({
         path: '/login'
       })
@@ -28,8 +28,8 @@ const routes = [{
   path: '/create',
   name: 'Create',
   component: CreateArticle,
-  beforeEnter(to, from, next) {
-    if (!localStorage.getItem("token")) {
+  beforeEnter (to, from, next) {
+    if (!localStorage.getItem('token')) {
       next({
         name: 'Login'
       })
@@ -62,8 +62,8 @@ const routes = [{
   path: '/update/:id',
   name: 'Update',
   component: UpdateArticle,
-  beforeEnter(to, from, next) {
-    if (!localStorage.getItem("token")) {
+  beforeEnter (to, from, next) {
+    if (!localStorage.getItem('token')) {
       next({
         name: 'Login'
       })

@@ -13,7 +13,7 @@
       <v-card-actions>
         <v-btn text small color="accent-4" @click.stop.prevent="update(card._id)">Actualizar</v-btn>
         <v-btn text small color="accent-4" @click.stop.prevent="dialog = true">Eliminar</v-btn>
-        
+
         <v-row justify="center">
           <v-dialog v-model="dialog" max-width="290">
             <v-card color="amber lighten-5">
@@ -32,37 +32,37 @@
 </template>
 
 <script>
-import Api from "../services/Api";
+import Api from '../services/Api'
 export default {
   data () {
     return {
-      dialog: false,
+      dialog: false
     }
   },
   computed: {
-    formatDate() {
-      let date = this.card.created_at;
-      return date.split("T")[0];
+    formatDate () {
+      const date = this.card.created_at
+      return date.split('T')[0]
     }
   },
   props: {
     card: Object
   },
   methods: {
-    erase(article) {
-      Api.deleteArticleById(article).then( response =>  {
-        this.$emit("deleteArticle");
-        this.dialog = false;
-      });
+    erase (article) {
+      Api.deleteArticleById(article).then(response => {
+        this.$emit('deleteArticle')
+        this.dialog = false
+      })
     },
-    update(id) {
-      this.$router.push(`/update/${id}`);
+    update (id) {
+      this.$router.push(`/update/${id}`)
     },
-    ToArticle(id) {
-      this.$router.push(`/article/${id}`);
+    ToArticle (id) {
+      this.$router.push(`/article/${id}`)
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

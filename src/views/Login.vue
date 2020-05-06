@@ -32,48 +32,48 @@
   </div>
 </template>
 <script>
-import Api from "../services/Api";
+import Api from '../services/Api'
 export default {
-  data() {
+  data () {
     return {
       showPassword: false,
-      userPassword: "",
+      userPassword: '',
       passwordRule: [
-        v => !!v || "Password is required",
-        v => v.length >= 6 || "Password must be more than 6 characters"
+        v => !!v || 'Password is required',
+        v => v.length >= 6 || 'Password must be more than 6 characters'
       ],
-      email: "",
+      email: '',
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
       ]
-    };
+    }
   },
   methods: {
-    login() {
+    login () {
       const user = {
         name: this.userName,
         email: this.email,
         password: this.userPassword
-      };
+      }
       Api.login(user)
         .then(response => {
           if (response.token) {
-            localStorage.setItem("token", response.token);
-            this.$root.$emit("log", true);
-            this.$router.push("/admin");
+            localStorage.setItem('token', response.token)
+            this.$root.$emit('log', true)
+            this.$router.push('/admin')
           } else {
-            this.emailRules = ["Wrong e-mail"]
-            this.passwordRule = ["Wrong password"]
+            this.emailRules = ['Wrong e-mail']
+            this.passwordRule = ['Wrong password']
           }
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
     },
-    toSignup() {
-      this.$router.push("/signup");
+    toSignup () {
+      this.$router.push('/signup')
     }
   }
-};
+}
 </script>
 <style lang="scss" scoped>
 .vCard {

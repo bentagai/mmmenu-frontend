@@ -18,47 +18,49 @@
 </template>
 
 <script>
-import Api from "../services/Api";
+import Api from '../services/Api'
 export default {
-  data() {
+  data () {
     return {
       items: [
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
+          src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
+          src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+          src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
+          src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
         }
       ],
       article: {}
-    };
+    }
   },
 
   computed: {
-    formatDate() {
+    formatDate () {
       if (this.article && this.article.created_at) {
-       return this.article.created_at.split("T")[0];
+        return this.article.created_at.split('T')[0]
+      } else {
+        return 'no-date'
       }
     }
   },
 
-  created() {
+  created () {
     Api.getArticleById(this.$route.params.id).then(
       article => (this.article = article)
-    );
+    )
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
 .header {
-  position: fixed; 
+  position: fixed;
   z-index: 1;
 }
 </style>

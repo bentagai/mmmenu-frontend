@@ -10,11 +10,11 @@
   </v-app>
 </template>
 <script>
-import Menu from "./components/Menu";
-import Footer from "./components/Footer";
+import Menu from './components/Menu'
+import Footer from './components/Footer'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Menu,
     Footer
@@ -22,5 +22,5 @@ export default {
   data: () => ({
     //
   })
-};
+}
 </script>
