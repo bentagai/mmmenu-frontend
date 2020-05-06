@@ -19,7 +19,9 @@
         </v-row>
 
       </v-card-actions>
-      <div v-else></div>
+      <v-card-actions v-else>
+        <v-icon>mdi-heart</v-icon>
+      </v-card-actions>
     </v-card>
   </div>
 </template>

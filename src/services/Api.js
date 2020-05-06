@@ -74,7 +74,7 @@ export default {
     })
     return response.data
   },
-  async updateUserPassword(newPassword) {
+  async updateUserPassword (newPassword) {
     const response = await API.put('users/me/password', newPassword, {
       headers: {
         token: localStorage.getItem('token')
@@ -82,7 +82,7 @@ export default {
     })
     return response.data
   },
-  async deleteUserById() {
+  async deleteUserById () {
     const response = await API.delete('users/me', {
       headers: {
         token: localStorage.getItem('token')
@@ -90,4 +90,12 @@ export default {
     })
     return response.data
   },
+  async getAllFavourites() {
+    const response = await API.get('users/me/favourites', {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    return response.data
+  }
 }

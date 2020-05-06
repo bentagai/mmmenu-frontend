@@ -10,6 +10,7 @@ import UpdateArticle from '../views/UpdateArticle.vue'
 import UserAccount from '../views/UserAccount.vue'
 import Category from '../views/Category.vue'
 import Search from '../views/Search'
+import Favourites from '../views/Favourites'
 
 Vue.use(VueRouter)
 
@@ -88,8 +89,22 @@ const routes = [
   },
   {
     path: '/account',
-    name: 'Accunt',
+    name: 'Account',
     component: UserAccount,
+    beforeEnter(to, from, next) {
+      if (!localStorage.getItem("token")) {
+        next({
+          name: 'Login'
+        })
+      } else {
+        next()
+      }
+    }
+  },
+  {
+    path: '/favourites',
+    name: 'Favourites',
+    component: Favourites,
     beforeEnter(to, from, next) {
       if (!localStorage.getItem("token")) {
         next({

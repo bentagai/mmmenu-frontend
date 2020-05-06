@@ -84,6 +84,10 @@
           </div>
           <div v-else>
             <v-list-item class="mb-0">
+              <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toFavourites">Favoritos</v-list-item-title>
+            </v-list-item>
+            <v-divider class="grey darken-4"></v-divider>
+            <v-list-item class="mb-0">
               <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toYourAccount">Tu cuenta</v-list-item-title>
             </v-list-item>
             <v-divider class="grey darken-4"></v-divider>
@@ -137,8 +141,10 @@ export default {
     },
     toYourAccount() {
       this.$router.push("/account");
-    }
-    ,
+    },
+    toFavourites() {
+      this.$router.push("/favourites");
+    },
     logout() {
       localStorage.removeItem("token");
       localStorage.removeItem("userType");
