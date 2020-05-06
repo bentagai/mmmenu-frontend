@@ -71,6 +71,11 @@ const routes = [{
       next()
     }
   }
+},
+
+{
+  path: '*',
+  component: Home
 }]
 
 const router = new VueRouter({
