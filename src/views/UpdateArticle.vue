@@ -27,31 +27,19 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import Api from '../services/Api'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-=======
-import Api from "../services/Api";
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import PopupTime from "../components/PopupTime"
+import PopupTime from '../components/PopupTime'
 
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
 export default {
   data () {
     return {
-<<<<<<< HEAD
       title: '',
       titleRule: [v => !!v || 'Title is required'],
       subtitle: '',
       subtitleRule: [v => !!v || 'Subtitle is required'],
-=======
-      title: "",
-      titleRule: [v => !!v || "Title is required"],
-      subtitle: "",
-      subtitleRule: [v => !!v || "Subtitle is required"],
-      items: ["comer", "hacer", "comprar"],
-      category: "",
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
+      items: ['comer', 'hacer', 'comprar'],
+      category: '',
       editor: ClassicEditor,
       text: '<p></p>',
       editorConfig: {},
@@ -84,18 +72,11 @@ export default {
   },
   mounted () {
     Api.getArticleById(this.$route.params.id).then(article => {
-<<<<<<< HEAD
       this.title = article.title
       this.subtitle = article.subtitle
+      this.category = article.category
       this.text = article.text
     })
-=======
-      this.title = article.title;
-      this.subtitle = article.subtitle;
-      this.category = article.category;
-      this.text = article.text;
-    });
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
   }
 }
 </script>

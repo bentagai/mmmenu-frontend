@@ -34,13 +34,8 @@ export default {
       showPassword: false,
       userPassword: '',
       passwordRule: [
-<<<<<<< HEAD
         v => !!v || 'Password is required',
-        v => v.length >= 6 || 'Password must be more than 10 characters'
-=======
-        v => !!v || "Password is required",
-        v => v.length >= 6 || "Password must be more than 5 characters"
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
+        v => v.length >= 6 || 'Password must be more than 5 characters'
       ],
       email: '',
       emailRules: [
@@ -58,15 +53,9 @@ export default {
       }
       Api.signup(newUser)
         .then(response => {
-<<<<<<< HEAD
           localStorage.setItem('token', response.token)
           this.$root.$emit('log', true)
-          this.$router.push('/admin')
-=======
-          localStorage.setItem("token", response.token);
-          this.$root.$emit("log", true);
-          this.$router.push("/");
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
+          this.$router.push('/')
         })
         .catch(err => console.log(err))
     }

@@ -27,13 +27,9 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import Api from '../services/Api'
-=======
-import Api from "../services/Api";
-import PopupConfirm from "../components/PopupConfirm"
+import PopupConfirm from '../components/PopupConfirm'
 
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
 export default {
   data () {
     return {
@@ -63,16 +59,11 @@ export default {
     update (id) {
       this.$router.push(`/update/${id}`)
     },
-<<<<<<< HEAD
     ToArticle (id) {
       this.$router.push(`/article/${id}`)
-=======
-    ToArticle(id) {
-      this.$router.push(`/article/${id}`);
     },
-    close() {
-      this.dialog = false;
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
+    close () {
+      this.dialog = false
     }
   }
 }

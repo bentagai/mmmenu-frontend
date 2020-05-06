@@ -12,35 +12,31 @@
 </template>
 
 <script>
-import Api from "../services/Api";
-import CardArticle from "../components/CardArticle";
+import Api from '../services/Api'
+import CardArticle from '../components/CardArticle'
 
 export default {
-<<<<<<< HEAD
-  name: 'Home'
-}
-=======
-  name: "Home",
-  data() {
+  name: 'Home',
+  data () {
     return {
       articles: [],
       status: false
     }
   },
   components: {
-   CardArticle
+    CardArticle
   },
-  created() {
+  created () {
     if (localStorage.getItem('userType') === 'true') {
       this.status = true
     } else {
-      this.status = false;
+      this.status = false
     }
   },
-  mounted() {
+  mounted () {
     Api.getAllArticles()
-      .then(articles => this.articles = articles.reverse());
+      // eslint-disable-next-line no-return-assign
+      .then(articles => this.articles = articles.reverse())
   }
-};
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
+}
 </script>

@@ -20,14 +20,9 @@ import CardArticle from '../components/CardArticle'
 export default {
   data () {
     return {
-<<<<<<< HEAD
-      articles: []
-    }
-=======
       articles: [],
       status: true
-    };
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
+    }
   },
   components: {
     CardArticle
@@ -40,20 +35,15 @@ export default {
       this.articles.splice(idx, 1)
     }
   },
-<<<<<<< HEAD
-  mounted () {
-    Api.getAllArticles().then(articles => (this.articles = articles.reverse()))
-=======
-  created() {
+  created () {
     if (localStorage.getItem('userType') === 'true') {
       this.status = true
     } else {
-      this.status = false;
+      this.status = false
     }
   },
-  mounted() {
-    Api.getAllArticles().then(articles => (this.articles = articles.reverse()));
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
+  mounted () {
+    Api.getAllArticles().then(articles => (this.articles = articles.reverse()))
   }
 }
 </script>

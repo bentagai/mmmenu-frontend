@@ -35,6 +35,7 @@ export default {
   },
   mounted () {
     Api.getAllFavourites()
+      // eslint-disable-next-line no-return-assign
       .then(articles => this.articles = articles.reverse())
   }
 }

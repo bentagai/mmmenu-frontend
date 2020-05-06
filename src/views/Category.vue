@@ -46,6 +46,7 @@ export default {
   methods: {
     search (query) {
       Api.getArticlesByCategory(query)
+        // eslint-disable-next-line no-return-assign
         .then(articles => this.articles = articles.reverse())
     }
   }

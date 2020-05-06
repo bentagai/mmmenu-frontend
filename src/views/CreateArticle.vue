@@ -35,16 +35,11 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import Api from '../services/Api'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-=======
-import Api from "../services/Api";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import PopupTime from "../components/PopupTime";
+import PopupTime from '../components/PopupTime'
 // import firebase from 'firebase'
 
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
 export default {
   data () {
     return {
@@ -55,19 +50,13 @@ export default {
       editor: ClassicEditor,
       text: '<p></p>',
       editorConfig: {},
-<<<<<<< HEAD
       textRule: [v => !!v || 'Main text is required'],
-      dialog: false
-    }
-=======
-      textRule: [v => !!v || "Main text is required"],
       dialog: false,
-      items: ["comer", "hacer", "comprar"],
-      category: "",
+      items: ['comer', 'hacer', 'comprar'],
+      category: ''
       // file: null,
       // picture: ''
-    };
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
+    }
   },
   components: {
     PopupTime
@@ -79,9 +68,6 @@ export default {
     }
   },
   methods: {
-<<<<<<< HEAD
-    create () {
-=======
     //  photo (event) {
     //   this.file = event.target.files[0]
     //   this.upload()
@@ -96,9 +82,8 @@ export default {
     //     })
     //   })
     // },
-    create() {
+    create () {
       // this.upload()
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
       const article = {
         title: this.title,
         subtitle: this.subtitle,

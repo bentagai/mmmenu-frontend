@@ -14,75 +14,6 @@ import Favourites from '../views/Favourites'
 
 Vue.use(VueRouter)
 
-<<<<<<< HEAD
-const routes = [{
-  path: '/admin',
-  name: 'Admin',
-  component: Admin,
-  beforeEnter (to, from, next) {
-    if (!localStorage.getItem('token')) {
-      next({
-        path: '/login'
-      })
-    } else {
-      next()
-    }
-  }
-},
-{
-  path: '/create',
-  name: 'Create',
-  component: CreateArticle,
-  beforeEnter (to, from, next) {
-    if (!localStorage.getItem('token')) {
-      next({
-        name: 'Login'
-      })
-    } else {
-      next()
-    }
-  }
-},
-{
-  path: '/',
-  name: 'Home',
-  component: Home
-},
-{
-  path: '/login',
-  name: 'Login',
-  component: Login
-},
-{
-  path: '/signup',
-  name: 'Signup',
-  component: Signup
-},
-{
-  path: '/article/:id',
-  name: 'Article',
-  component: Article
-},
-{
-  path: '/update/:id',
-  name: 'Update',
-  component: UpdateArticle,
-  beforeEnter (to, from, next) {
-    if (!localStorage.getItem('token')) {
-      next({
-        name: 'Login'
-      })
-    } else {
-      next()
-    }
-  }
-},
-
-{
-  path: '*',
-  component: Home
-}]
-=======
 const routes = [
   {
     path: '/admin',
@@ -102,7 +33,7 @@ const routes = [
     path: '/create',
     name: 'Create',
     component: CreateArticle,
-    beforeEnter(to, from, next) {
+    beforeEnter (to, from, next) {
       if (localStorage.getItem('userType') === 'false') {
         next({
           name: 'Login'
@@ -146,7 +77,7 @@ const routes = [
     path: '/update/:id',
     name: 'Update',
     component: UpdateArticle,
-    beforeEnter(to, from, next) {
+    beforeEnter (to, from, next) {
       if (localStorage.getItem('userType') === 'false') {
         next({
           name: 'Login'
@@ -160,8 +91,8 @@ const routes = [
     path: '/account',
     name: 'Account',
     component: UserAccount,
-    beforeEnter(to, from, next) {
-      if (!localStorage.getItem("token")) {
+    beforeEnter (to, from, next) {
+      if (!localStorage.getItem('token')) {
         next({
           name: 'Login'
         })
@@ -174,8 +105,8 @@ const routes = [
     path: '/favourites',
     name: 'Favourites',
     component: Favourites,
-    beforeEnter(to, from, next) {
-      if (!localStorage.getItem("token")) {
+    beforeEnter (to, from, next) {
+      if (!localStorage.getItem('token')) {
         next({
           name: 'Login'
         })
@@ -185,7 +116,6 @@ const routes = [
     }
   }
 ]
->>>>>>> eee943872ec38b8ffa3d82a6d371d754e2d05faf
 
 const router = new VueRouter({
   mode: 'history',
