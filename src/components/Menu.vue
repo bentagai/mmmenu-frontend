@@ -8,10 +8,20 @@
           <span class="display-1 font-weight-light">Mmmenu</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-icon v-if="!status" @click="toLogin">mdi-login</v-icon>
-        <v-icon v-else @click="logout">mdi-logout</v-icon>
+        <v-icon @click="search = true">mdi-magnify</v-icon>
       </v-app-bar>
     </div>
+    <v-navigation-drawer right xs color="amber lighten-5" v-model="search" fixed temporary :width="windowWidth">
+      <v-list-item-group>
+        <v-list nav dense>
+          <v-list-item class="d-flex justify-end" @click="search = false">
+            <v-icon>mdi-close</v-icon>
+          </v-list-item>
+          <v-divider class="grey darken-4"></v-divider>
+          <v-text-field @keyup.enter="find" v-model="filter" ></v-text-field>
+        </v-list>
+      </v-list-item-group>
+    </v-navigation-drawer>
     <v-navigation-drawer xs color="amber lighten-5" v-model="drawer" fixed temporary :width="windowWidth">
       <v-list nav dense>
         <v-list-item-group>
@@ -19,27 +29,32 @@
             <v-icon>mdi-close</v-icon>
           </v-list-item>
           <v-divider class="grey darken-4"></v-divider>
-          <!-- <v-list-item>
-              <v-list-item-title>Qué Hacer</v-list-item-title>
-              <v-list-item-icon>
-                <v-icon>mdi-arrow</v-icon>
-              </v-list-item-icon>
-       
-              <v-list-item-title>Qué Comer</v-list-item-title>
-              <v-list-item-icon>
-                <v-icon>mdi-home</v-icon>
-              </v-list-item-icon>
-          
-              <v-list-item-title>Qué Comprar</v-list-item-title>
-              <v-list-item-icon>
-                <v-icon>mdi-home</v-icon>
-              </v-list-item-icon>
-          </v-list-item>-->
-          <div v-if="!status">
+          <v-list-item class="mb-0">
+            <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toHome">Home</v-list-item-title>
+          </v-list-item>
+          <v-divider class="grey darken-4"></v-divider>
+          <v-list-item class="mb-0">
+            <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toCategory('Qué_Hacer')">Qué Hacer</v-list-item-title>
+            <!-- <v-list-item-icon>
+              <v-icon>mdi-arrow</v-icon>
+            </v-list-item-icon> -->
+          </v-list-item>
+          <v-divider class="grey darken-4"></v-divider>
+          <v-list-item class="mb-0">
+            <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toCategory('Qué_Comer')">Qué Comer</v-list-item-title>
+            <!-- <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon> -->
+          </v-list-item>
+          <v-divider class="grey darken-4"></v-divider>
             <v-list-item class="mb-0">
-              <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toHome">Home</v-list-item-title>
-            </v-list-item>
-            <v-divider class="grey darken-4"></v-divider>
+            <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toCategory('Qué_Comprar')">Qué Comprar</v-list-item-title>
+            <!-- <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon> -->
+          </v-list-item>
+          <v-divider class="grey darken-4"></v-divider>
+          <div v-if="!status">
             <v-list-item class="mb-0">
               <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toSignup">Registrarse</v-list-item-title>
             </v-list-item>
@@ -69,10 +84,6 @@
           </div>
           <div v-else>
             <v-list-item class="mb-0">
-              <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toHome">Home</v-list-item-title>
-            </v-list-item>
-            <v-divider class="grey darken-4"></v-divider>
-            <v-list-item class="mb-0">
               <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toYourAccount">Tu cuenta</v-list-item-title>
             </v-list-item>
             <v-divider class="grey darken-4"></v-divider>
@@ -91,13 +102,26 @@ export default {
   name: "Menu",
   data: () => ({
     drawer: false,
+    search: false,
     status: false,
     windowWidth: "",
-    admin: ""
+    admin: "",
+    category: "",
+    filter: ""
   }),
   methods: {
     toHome() {
       this.$router.push("/");
+    },
+    toCategory(query){
+      this.category = query;
+      this.$router.push(`/categories/${this.category}`);
+      this.$root.$emit("mySearch", this.category);
+    },
+    find() {
+      this.$router.push(`/search/${this.filter}`);
+      this.$root.$emit("myQuery", this.filter);
+      this.filter = "";
     },
     toAdmin() {
       this.$router.push("/admin");

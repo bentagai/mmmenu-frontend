@@ -31,6 +31,10 @@ export default {
     const response = await API.get('/article')
     return response.data
   },
+  async getArticlesByCategory (query) {
+    const response = await API.get(`/article?search=${query}`)
+    return response.data
+  },
   async deleteArticleById (article) {
     const response = await API.delete(`/article/${article}`, {
       headers: {

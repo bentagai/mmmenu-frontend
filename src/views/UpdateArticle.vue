@@ -6,7 +6,8 @@
         <v-card-text>
           <v-form>
             <v-text-field counter label="Title" v-model="title" :rules="titleRule" class="mb-1"></v-text-field>
-            <v-text-field counter label="Subtitle" v-model="subtitle" :rules="subtitleRule" class="mb-10"></v-text-field>
+            <v-text-field counter label="Subtitle" v-model="subtitle" :rules="subtitleRule" class="mb-1"></v-text-field>
+            <v-select :items="items" v-model="category" label="Category" class="mb-10"></v-select>
             <ckeditor :editor="editor" v-model="text" :config="editorConfig" counter></ckeditor>
           </v-form>
         </v-card-text>
@@ -37,6 +38,8 @@ export default {
       titleRule: [v => !!v || "Title is required"],
       subtitle: "",
       subtitleRule: [v => !!v || "Subtitle is required"],
+      items: ["comer", "hacer", "comprar"],
+      category: "",
       editor: ClassicEditor,
       text: '<p></p>',
       editorConfig: {},
@@ -58,6 +61,7 @@ export default {
       const article = {
         title: this.title,
         subtitle: this.subtitle,
+        category: this.category,
         text: this.text
       };
       Api.updateArticle(this.$route.params.id, article).then(response => {
@@ -70,6 +74,7 @@ export default {
     Api.getArticleById(this.$route.params.id).then(article => {
       this.title = article.title;
       this.subtitle = article.subtitle;
+      this.category = article.category;
       this.text = article.text;
     });
   }

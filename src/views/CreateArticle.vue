@@ -11,9 +11,11 @@
               label="Subtitle"
               v-model="subtitle"
               :rules="subtitleRule"
-              class="mb-10"
+              class="mb-1"
             ></v-text-field>
             <!-- <input class="my-2" type="file" @change="photo"> -->
+            <v-select :items="items" v-model="category" label="Category" class="mb-10"></v-select>
+            {{category}}
             <ckeditor :editor="editor" v-model="text" :config="editorConfig" counter></ckeditor>
           </v-form>
         </v-card-text>
@@ -35,7 +37,7 @@
 <script>
 import Api from "../services/Api";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import PopupTime from "../components/PopupTime"
+import PopupTime from "../components/PopupTime";
 // import firebase from 'firebase'
 
 export default {
@@ -50,6 +52,8 @@ export default {
       editorConfig: {},
       textRule: [v => !!v || "Main text is required"],
       dialog: false,
+      items: ["comer", "hacer", "comprar"],
+      category: "",
       // file: null,
       // picture: ''
     };
@@ -83,6 +87,7 @@ export default {
       const article = {
         title: this.title,
         subtitle: this.subtitle,
+        category: this.category,
         // img_url: this.picture,
         text: this.text
       };

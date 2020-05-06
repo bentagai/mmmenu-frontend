@@ -10,7 +10,7 @@
       <v-card-text class="pb-0">
         <p class="subtitle-2 font-weight-regular">{{ formatDate }}</p>
       </v-card-text>
-      <v-card-actions v-if="user">
+      <v-card-actions v-if="user === true">
         <v-btn text small color="accent-4" @click.stop.prevent="update(card._id)">Actualizar</v-btn>
         <v-btn text small color="accent-4" @click.stop.prevent="dialog = true">Eliminar</v-btn>
         

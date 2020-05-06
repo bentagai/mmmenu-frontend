@@ -35,6 +35,13 @@ export default {
       this.articles.splice(idx, 1);
     }
   },
+  created() {
+    if (localStorage.getItem('userType') === 'true') {
+      this.status = true
+    } else {
+      this.status = false;
+    }
+  },
   mounted() {
     Api.getAllArticles().then(articles => (this.articles = articles.reverse()));
   }

@@ -8,6 +8,8 @@ import CreateArticle from '../views/CreateArticle.vue'
 import Article from '../views/Article.vue'
 import UpdateArticle from '../views/UpdateArticle.vue'
 import UserAccount from '../views/UserAccount.vue'
+import Category from '../views/Category.vue'
+import Search from '../views/Search'
 
 Vue.use(VueRouter)
 
@@ -54,6 +56,16 @@ const routes = [
     path: '/signup',
     name: 'Signup',
     component: Signup
+  },
+  {
+    path: '/categories/:category',
+    name: 'Category',
+    component: Category
+  },
+  {
+    path: '/search/:query',
+    name: 'Search',
+    component: Search
   },
   {
     path: '/article/:id',

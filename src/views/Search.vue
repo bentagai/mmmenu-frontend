@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="title font-weight-regular d-flex justify-center">{{ mainTitle }}</div>
     <!-- <h1>Welcome to Mmmenu</h1> -->
     <v-container class="container">
       <v-row dense>
@@ -16,11 +17,12 @@ import Api from "../services/Api";
 import CardArticle from "../components/CardArticle";
 
 export default {
-  name: "Home",
+  name: "Search",
   data() {
     return {
       articles: [],
-      status: false
+      status: false,
+      mainTitle: ""
     }
   },
   components: {
@@ -32,10 +34,18 @@ export default {
     } else {
       this.status = false;
     }
+    this.$root.$on("myQuery", query => {
+      this.mainTitle = query;
+      this.find(query);
+    })
+    this.mainTitle = this.$route.params.query;
+    this.find(this.$route.params.query);
   },
-  mounted() {
-    Api.getAllArticles()
-      .then(articles => this.articles = articles.reverse());
+  methods: {
+    find(query) {
+      Api.getArticlesByCategory(query)
+        .then(articles => this.articles = articles.reverse());
+    }
   }
 };
 </script>
