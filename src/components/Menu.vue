@@ -5,7 +5,7 @@
         <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
         <v-spacer></v-spacer>
         <v-toolbar-title>
-          <span class="display-1 font-weight-light">Mmmenu</span>
+          <span class="display-1 font-weight-light">GCExplorer</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-icon @click="search = true">mdi-magnify</v-icon>

@@ -4,7 +4,7 @@
     <v-container class="container">
       <v-row dense>
         <v-col md="6" sm="6" xs="12" v-for="(article, idx) in articles" :key="idx">
-          <CardArticle :card="article" :user="status" />
+          <CardArticle :card="article" :user="status" @deleteFavourite="deleteFavourite(idx)" @added="added(idx)" :add="article.isFavourite"/>
         </v-col>
       </v-row>
     </v-container>
@@ -26,16 +26,38 @@ export default {
   components: {
    CardArticle
   },
+  methods: {
+    deleteFavourite(idx) {
+      this.articles[idx].isFavourite = false;
+    },
+    added(idx) {
+      this.articles[idx].isFavourite = true;
+    }
+  },
   created() {
     if (localStorage.getItem('userType') === 'true') {
       this.status = true
     } else {
       this.status = false;
     }
+    
   },
   mounted() {
     Api.getAllArticles()
-      .then(articles => this.articles = articles.reverse());
+      .then(articles => {
+        articles.forEach(article => article.isFavourite = false)
+        this.articles = articles.reverse()
+
+        Api.getAllFavourites()
+          .then(favourites => {
+            favourites = favourites.map(e => e._id)
+            this.articles.forEach(article => {
+              if(favourites.includes(article._id)) {
+                article.isFavourite = true
+              }
+            })
+          })
+      });
   }
 };
 </script>

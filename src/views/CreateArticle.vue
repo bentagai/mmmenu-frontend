@@ -13,9 +13,8 @@
               :rules="subtitleRule"
               class="mb-1"
             ></v-text-field>
-            <!-- <input class="my-2" type="file" @change="photo"> -->
+            <input type="file" accept="image/*" @change="onFileSelected" />
             <v-select :items="items" v-model="category" label="Category" class="mb-10"></v-select>
-            {{category}}
             <ckeditor :editor="editor" v-model="text" :config="editorConfig" counter></ckeditor>
           </v-form>
         </v-card-text>
@@ -38,7 +37,7 @@
 import Api from "../services/Api";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import PopupTime from "../components/PopupTime";
-// import firebase from 'firebase'
+import firebase from 'firebase'
 
 export default {
   data() {
@@ -54,8 +53,8 @@ export default {
       dialog: false,
       items: ["comer", "hacer", "comprar"],
       category: "",
-      // file: null,
-      // picture: ''
+      file: null,
+      picture: ''
     };
   },
   components: {
@@ -68,27 +67,37 @@ export default {
     }
   },
   methods: {
-    //  photo (event) {
-    //   this.file = event.target.files[0]
-    //   this.upload()
-    // },
-    // upload () {
-    //   const storageRef = firebase.storage().ref(`imagenes/${this.file.name}`)
-    //   const task = storageRef.put(this.file)
-
-    //   task.on('state_changed', () => {
-    //     task.snapshot.ref.getDownloadURL().then((url) => {
-    //       this.picture = url
-    //     })
-    //   })
-    // },
-    create() {
-      // this.upload()
+    onFileSelected(event) {
+      this.file = event.target.files[0];
+    },
+    uploadImage() {
+      return new Promise(resolve => {
+        var storageRef = firebase.storage().ref();
+        var metadata = {
+          contentType: "image/jpeg"
+        };
+        var uploadTask = storageRef
+          .child("images/" + this.file.name)
+          .put(this.file, metadata);
+        uploadTask.on(
+          firebase.storage.TaskEvent.STATE_CHANGED,
+          () => {},
+          error => console.log(error),
+          async function() {
+            const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+            resolve(downloadURL);
+          }
+        );
+      });
+    },
+    async create() {
+      let imgURL = await this.uploadImage();
+      this.picture = imgURL;
       const article = {
         title: this.title,
         subtitle: this.subtitle,
         category: this.category,
-        // img_url: this.picture,
+        img_url: this.picture,
         text: this.text
       };
       Api.createArticle(article).then(response => {
@@ -96,7 +105,7 @@ export default {
         setTimeout(() => this.$router.push("/admin"), 1500);
       });
     }
-  }
+  },
 };
 </script>
 

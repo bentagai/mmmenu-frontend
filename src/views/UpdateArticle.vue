@@ -7,6 +7,7 @@
           <v-form>
             <v-text-field counter label="Title" v-model="title" :rules="titleRule" class="mb-1"></v-text-field>
             <v-text-field counter label="Subtitle" v-model="subtitle" :rules="subtitleRule" class="mb-1"></v-text-field>
+            <input type="file" accept="image/*" @change="onFileSelected" />
             <v-select :items="items" v-model="category" label="Category" class="mb-10"></v-select>
             <ckeditor :editor="editor" v-model="text" :config="editorConfig" counter></ckeditor>
           </v-form>
@@ -30,6 +31,7 @@
 import Api from "../services/Api";
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import PopupTime from "../components/PopupTime"
+import firebase from 'firebase'
 
 export default {
   data() {
@@ -44,7 +46,9 @@ export default {
       text: '<p></p>',
       editorConfig: {},
       textRule: [v => !!v || "Main text is required"],
-      dialog: false
+      dialog: false,
+      file: null,
+      picture: ''
     };
   },
   components: {
@@ -57,11 +61,37 @@ export default {
     }
   },
   methods: {
-    update() {
+    onFileSelected(event) {
+      this.file = event.target.files[0];
+    },
+    uploadImage() {
+      return new Promise(resolve => {
+        var storageRef = firebase.storage().ref();
+        var metadata = {
+          contentType: "image/jpeg"
+        };
+        var uploadTask = storageRef
+          .child("images/" + this.file.name)
+          .put(this.file, metadata);
+        uploadTask.on(
+          firebase.storage.TaskEvent.STATE_CHANGED,
+          () => {},
+          error => console.log(error),
+          async function() {
+            const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+            resolve(downloadURL);
+          }
+        );
+      });
+    },
+    async update() {
+      let imgURL = await this.uploadImage();
+      this.picture = imgURL;
       const article = {
         title: this.title,
         subtitle: this.subtitle,
         category: this.category,
+        img_url: this.picture,
         text: this.text
       };
       Api.updateArticle(this.$route.params.id, article).then(response => {
