@@ -28,11 +28,11 @@ export default {
     CardArticle
   },
   methods: {
-    deleteFavourite(idx) {
-      this.articles.splice(idx, 1);
+    deleteFavourite (idx) {
+      this.articles.splice(idx, 1)
     }
   },
-  created() {
+  created () {
     if (localStorage.getItem('userType') === 'true') {
       this.status = true
     } else {

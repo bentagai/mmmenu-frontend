@@ -34,9 +34,9 @@
 </template>
 
 <script>
-import Api from "../services/Api";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import PopupTime from "../components/PopupTime";
+import Api from '../services/Api'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import PopupTime from '../components/PopupTime'
 import firebase from 'firebase'
 
 export default {
@@ -51,11 +51,11 @@ export default {
       editorConfig: {},
       textRule: [v => !!v || 'Main text is required'],
       dialog: false,
-      items: ["comer", "hacer", "comprar"],
-      category: "",
+      items: ['comer', 'hacer', 'comprar'],
+      category: '',
       file: null,
       picture: ''
-    };
+    }
   },
   components: {
     PopupTime
@@ -67,32 +67,32 @@ export default {
     }
   },
   methods: {
-    onFileSelected(event) {
-      this.file = event.target.files[0];
+    onFileSelected (event) {
+      this.file = event.target.files[0]
     },
-    uploadImage() {
+    uploadImage () {
       return new Promise(resolve => {
-        var storageRef = firebase.storage().ref();
+        var storageRef = firebase.storage().ref()
         var metadata = {
-          contentType: "image/jpeg"
-        };
+          contentType: 'image/jpeg'
+        }
         var uploadTask = storageRef
-          .child("images/" + this.file.name)
-          .put(this.file, metadata);
+          .child('images/' + this.file.name)
+          .put(this.file, metadata)
         uploadTask.on(
           firebase.storage.TaskEvent.STATE_CHANGED,
           () => {},
           error => console.log(error),
-          async function() {
-            const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-            resolve(downloadURL);
+          async function () {
+            const downloadURL = await uploadTask.snapshot.ref.getDownloadURL()
+            resolve(downloadURL)
           }
-        );
-      });
+        )
+      })
     },
-    async create() {
-      let imgURL = await this.uploadImage();
-      this.picture = imgURL;
+    async create () {
+      const imgURL = await this.uploadImage()
+      this.picture = imgURL
       const article = {
         title: this.title,
         subtitle: this.subtitle,
@@ -105,8 +105,8 @@ export default {
         setTimeout(() => this.$router.push('/admin'), 1500)
       })
     }
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>

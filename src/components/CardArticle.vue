@@ -64,18 +64,18 @@ export default {
     ToArticle (id) {
       this.$router.push(`/article/${id}`)
     },
-    close() {
-      this.dialog = false;
+    close () {
+      this.dialog = false
     },
-    addToFavourites(id) {
+    addToFavourites (id) {
       Api.addFavouriteToUser(id).then(response => {
-        this.$emit("added")
+        this.$emit('added')
       })
     },
-    deleteFavourite(id) {
+    deleteFavourite (id) {
       console.log(id)
       Api.deleteFavourite(id).then(response => {
-        this.$emit("deleteFavourite")
+        this.$emit('deleteFavourite')
       })
     }
   }

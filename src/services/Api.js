@@ -98,7 +98,7 @@ export default {
     })
     return response.data
   },
-  async addFavouriteToUser(id) {
+  async addFavouriteToUser (id) {
     const response = await API.post(`users/me/favourites/${id}`, {}, {
       headers: {
         token: localStorage.getItem('token')
@@ -106,7 +106,7 @@ export default {
     })
     return response.data
   },
-  async deleteFavourite(id) {
+  async deleteFavourite (id) {
     const response = await API.delete(`users/me/favourites/${id}`, {
       headers: {
         token: localStorage.getItem('token')

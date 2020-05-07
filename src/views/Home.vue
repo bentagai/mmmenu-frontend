@@ -28,10 +28,10 @@ export default {
   },
   methods: {
     deleteFavourite (idx) {
-      this.articles[idx].isFavourite = false;
+      this.articles[idx].isFavourite = false
     },
     added (idx) {
-      this.articles[idx].isFavourite = true;
+      this.articles[idx].isFavourite = true
     }
   },
   created () {
@@ -52,12 +52,12 @@ export default {
           .then(favourites => {
             favourites = favourites.map(e => e._id)
             this.articles.forEach(article => {
-              if(favourites.includes(article._id)) {
+              if (favourites.includes(article._id)) {
                 article.isFavourite = true
               }
             })
           })
-      });
+      })
   }
 }
 </script>
