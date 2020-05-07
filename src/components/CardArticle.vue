@@ -8,7 +8,7 @@
         style="max-width: 2000px block"
       >{{ card.subtitle }}</v-card-subtitle>
       <v-card-text class="pb-0">
-        <p class="subtitle-2 font-weight-regular">{{ formatDate }}</p>
+        <p class="subtitle-2 font-weight-regular">{{ formatDate | moment("dddd, MMMM Do YYYY") }}</p>
       </v-card-text>
       <v-card-actions v-if="user === true">
         <v-btn text small color="accent-4" @click.stop.prevent="update(card._id)">Actualizar</v-btn>

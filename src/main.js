@@ -6,6 +6,7 @@ import firebase from 'firebase'
 import CKEditor from '@ckeditor/ckeditor5-vue'
 
 Vue.use(CKEditor)
+Vue.use(require('vue-moment'))
 
 Vue.config.productionTip = false
 
