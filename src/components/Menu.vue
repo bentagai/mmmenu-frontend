@@ -18,7 +18,7 @@
             <v-icon>mdi-close</v-icon>
           </v-list-item>
           <v-divider class="grey darken-4"></v-divider>
-          <v-text-field @keyup.enter="find" v-model="filter" ></v-text-field>
+          <v-text-field placeholder="Explora" @keyup.enter="find" v-model="filter" ></v-text-field>
         </v-list>
       </v-list-item-group>
     </v-navigation-drawer>
