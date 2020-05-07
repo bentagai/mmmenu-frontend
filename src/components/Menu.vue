@@ -35,23 +35,14 @@
           <v-divider class="grey darken-4"></v-divider>
           <v-list-item class="mb-0">
             <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toCategory('Qué_Hacer')">Qué Hacer</v-list-item-title>
-            <!-- <v-list-item-icon>
-              <v-icon>mdi-arrow</v-icon>
-            </v-list-item-icon> -->
           </v-list-item>
           <v-divider class="grey darken-4"></v-divider>
           <v-list-item class="mb-0">
             <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toCategory('Qué_Comer')">Qué Comer</v-list-item-title>
-            <!-- <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
-            </v-list-item-icon> -->
           </v-list-item>
           <v-divider class="grey darken-4"></v-divider>
             <v-list-item class="mb-0">
             <v-list-item-title style="height:50px" class="subtitle-2 font-weight-regular d-flex align-center" @click="toCategory('Qué_Comprar')">Qué Comprar</v-list-item-title>
-            <!-- <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
-            </v-list-item-icon> -->
           </v-list-item>
           <v-divider class="grey darken-4"></v-divider>
           <div v-if="!status">

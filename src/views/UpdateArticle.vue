@@ -105,7 +105,6 @@ export default {
       this.title = article.title
       this.subtitle = article.subtitle
       this.category = article.category
-      this.picture = article.img_url
       this.text = article.text
     })
   }

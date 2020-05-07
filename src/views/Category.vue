@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="title font-weight-regular d-flex justify-center">{{ mainTitle }}</div>
-    <!-- <h1>Welcome to Mmmenu</h1> -->
     <v-container class="container">
       <v-row dense>
         <v-col md="6" sm="6" xs="12" v-for="(article, idx) in articles" :key="idx">

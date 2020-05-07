@@ -33,13 +33,6 @@ export default {
       this.articles[idx].isFavourite = true
     }
   },
-  // created () {
-  //   if (localStorage.getItem('userType') === 'true') {
-  //     this.status = true
-  //   } else {
-  //     this.status = false
-  //   }
-  // },
   mounted () {
     Api.getAllArticles()
       .then(articles => {

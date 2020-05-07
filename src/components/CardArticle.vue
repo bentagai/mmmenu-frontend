@@ -76,7 +76,6 @@ export default {
       })
     },
     deleteFavourite (id) {
-      console.log(id)
       Api.deleteFavourite(id).then(response => {
         this.$emit('deleteFavourite')
       })
