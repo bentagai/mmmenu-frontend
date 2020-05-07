@@ -9,7 +9,7 @@
       <v-img :src="article.img_url" />
       <h1 class="display-1 font-regular mb-2 mt-10">{{article.title}}</h1>
       <h2 class="headline font-weight-regular mb-2">{{article.subtitle}}</h2>
-      <h2 class="subtitle-2 font-weight-regular mb-10">{{formatDate}}</h2>
+      <h2 class="subtitle-2 font-weight-regular mb-10">{{formatDate | moment("dddd, MMMM Do YYYY")}}</h2>
       <span class="title font-weight-regular" v-html="article.text"></span>
     </v-container>
   </div>
