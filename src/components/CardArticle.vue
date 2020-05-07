@@ -68,6 +68,9 @@ export default {
       this.dialog = false
     },
     addToFavourites (id) {
+      if (!localStorage.getItem('token')) {
+        this.$router.push('/login')
+      }
       Api.addFavouriteToUser(id).then(response => {
         this.$emit('added')
       })
