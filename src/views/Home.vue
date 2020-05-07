@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <h1>Welcome to Mmmenu</h1> -->
     <v-container class="container">
       <v-row dense>
         <v-col md="6" sm="6" xs="12" v-for="(article, idx) in articles" :key="idx">
@@ -34,13 +33,13 @@ export default {
       this.articles[idx].isFavourite = true
     }
   },
-  created () {
-    if (localStorage.getItem('userType') === 'true') {
-      this.status = true
-    } else {
-      this.status = false
-    }
-  },
+  // created () {
+  //   if (localStorage.getItem('userType') === 'true') {
+  //     this.status = true
+  //   } else {
+  //     this.status = false
+  //   }
+  // },
   mounted () {
     Api.getAllArticles()
       .then(articles => {

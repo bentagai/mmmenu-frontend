@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card outlined tile color="#fafafa" @click="ToArticle(card._id)">
-      <v-img height="325px" :src="card.img_url[0]"></v-img>
+      <v-img height="325px" :src="card.img_url"></v-img>
       <v-card-title class="headline font-weight-regular">{{ card.title }}</v-card-title>
       <v-card-subtitle
         class="title font-weight-regular text-truncate pb-2"
