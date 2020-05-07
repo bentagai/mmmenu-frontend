@@ -40,16 +40,16 @@ import PopupTime from "../components/PopupTime";
 import firebase from 'firebase'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
-      titleRule: [v => !!v || "Title is required"],
-      subtitle: "",
-      subtitleRule: [v => !!v || "Subtitle is required"],
+      title: '',
+      titleRule: [v => !!v || 'Title is required'],
+      subtitle: '',
+      subtitleRule: [v => !!v || 'Subtitle is required'],
       editor: ClassicEditor,
-      text: "<p></p>",
+      text: '<p></p>',
       editorConfig: {},
-      textRule: [v => !!v || "Main text is required"],
+      textRule: [v => !!v || 'Main text is required'],
       dialog: false,
       items: ["comer", "hacer", "comprar"],
       category: "",
@@ -61,9 +61,9 @@ export default {
     PopupTime
   },
   watch: {
-    dialog(val) {
-      if (!val) return;
-      setTimeout(() => (this.dialog = false), 1500);
+    dialog (val) {
+      if (!val) return
+      setTimeout(() => (this.dialog = false), 1500)
     }
   },
   methods: {
@@ -99,11 +99,11 @@ export default {
         category: this.category,
         img_url: this.picture,
         text: this.text
-      };
+      }
       Api.createArticle(article).then(response => {
-        this.dialog = true;
-        setTimeout(() => this.$router.push("/admin"), 1500);
-      });
+        this.dialog = true
+        setTimeout(() => this.$router.push('/admin'), 1500)
+      })
     }
   },
 };

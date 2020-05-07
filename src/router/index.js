@@ -33,7 +33,7 @@ const routes = [
     path: '/create',
     name: 'Create',
     component: CreateArticle,
-    beforeEnter(to, from, next) {
+    beforeEnter (to, from, next) {
       if (localStorage.getItem('userType') === 'false') {
         next({
           name: 'Login'
@@ -77,7 +77,7 @@ const routes = [
     path: '/update/:id',
     name: 'Update',
     component: UpdateArticle,
-    beforeEnter(to, from, next) {
+    beforeEnter (to, from, next) {
       if (localStorage.getItem('userType') === 'false') {
         next({
           name: 'Login'
@@ -91,8 +91,8 @@ const routes = [
     path: '/account',
     name: 'Account',
     component: UserAccount,
-    beforeEnter(to, from, next) {
-      if (!localStorage.getItem("token")) {
+    beforeEnter (to, from, next) {
+      if (!localStorage.getItem('token')) {
         next({
           name: 'Login'
         })
@@ -105,8 +105,8 @@ const routes = [
     path: '/favourites',
     name: 'Favourites',
     component: Favourites,
-    beforeEnter(to, from, next) {
-      if (!localStorage.getItem("token")) {
+    beforeEnter (to, from, next) {
+      if (!localStorage.getItem('token')) {
         next({
           name: 'Login'
         })

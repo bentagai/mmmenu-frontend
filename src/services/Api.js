@@ -1,6 +1,6 @@
 import axios from 'axios'
 const API = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: process.env.VUE_APP_API_URL,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ export default {
     })
     return response.data
   },
-  async updateUser(updUser) {
+  async updateUser (updUser) {
     const response = await API.put('users/me', {
       ...updUser
     },
@@ -90,7 +90,7 @@ export default {
     })
     return response.data
   },
-  async getAllFavourites() {
+  async getAllFavourites () {
     const response = await API.get('users/me/favourites', {
       headers: {
         token: localStorage.getItem('token')

@@ -103,70 +103,70 @@
 </template>
 <script>
 export default {
-  name: "Menu",
+  name: 'Menu',
   data: () => ({
     drawer: false,
     search: false,
     status: false,
-    windowWidth: "",
-    admin: "",
-    category: "",
-    filter: ""
+    windowWidth: '',
+    admin: '',
+    category: '',
+    filter: ''
   }),
   methods: {
-    toHome() {
-      this.$router.push("/");
+    toHome () {
+      this.$router.push('/')
     },
-    toCategory(query){
-      this.category = query;
-      this.$router.push(`/categories/${this.category}`);
-      this.$root.$emit("mySearch", this.category);
+    toCategory (query) {
+      this.category = query
+      this.$router.push(`/categories/${this.category}`)
+      this.$root.$emit('mySearch', this.category)
     },
-    find() {
-      this.$router.push(`/search/${this.filter}`);
-      this.$root.$emit("myQuery", this.filter);
-      this.filter = "";
+    find () {
+      this.$router.push(`/search/${this.filter}`)
+      this.$root.$emit('myQuery', this.filter)
+      this.filter = ''
     },
-    toAdmin() {
-      this.$router.push("/admin");
+    toAdmin () {
+      this.$router.push('/admin')
     },
-    toLogin() {
-      this.$router.push("/login");
+    toLogin () {
+      this.$router.push('/login')
     },
-    toSignup() {
-      this.$router.push("/signup");
+    toSignup () {
+      this.$router.push('/signup')
     },
-    toCreate() {
-      this.$router.push("/create");
+    toCreate () {
+      this.$router.push('/create')
     },
-    toYourAccount() {
-      this.$router.push("/account");
+    toYourAccount () {
+      this.$router.push('/account')
     },
-    toFavourites() {
-      this.$router.push("/favourites");
+    toFavourites () {
+      this.$router.push('/favourites')
     },
-    logout() {
-      localStorage.removeItem("token");
-      localStorage.removeItem("userType");
-      this.status = false;
-      this.$router.push("/");
-    },
+    logout () {
+      localStorage.removeItem('token')
+      localStorage.removeItem('userType')
+      this.status = false
+      this.$router.push('/')
+    }
   },
-  mounted() {
-    this.status = localStorage.getItem("token") ? true : false;
-    this.$root.$on("log", status => {
-      this.status = true;
+  mounted () {
+    this.status = !!localStorage.getItem('token')
+    this.$root.$on('log', status => {
+      this.status = true
       this.admin = status
-    });
-    this.$root.$on("deleted", status => {
-      this.status = status;
     })
-    this.windowWidth = window.innerWidth < 600 ? "75%" : "50%";
+    this.$root.$on('deleted', status => {
+      this.status = status
+    })
+    this.windowWidth = window.innerWidth < 600 ? '75%' : '50%'
     window.onresize = () => {
-      this.windowWidth = window.innerWidth < 600 ? "75%" : "50%";
-    };
+      this.windowWidth = window.innerWidth < 600 ? '75%' : '50%'
+    }
   }
-};
+}
 </script>
 <style lang="css" scoped>
 </style>

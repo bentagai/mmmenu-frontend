@@ -13,7 +13,7 @@
       <v-card-actions v-if="user === true">
         <v-btn text small color="accent-4" @click.stop.prevent="update(card._id)">Actualizar</v-btn>
         <v-btn text small color="accent-4" @click.stop.prevent="dialog = true">Eliminar</v-btn>
-        
+
         <v-row justify="center">
           <PopupConfirm :text="'Eliminar'" :dialog="dialog" :event="erase" :id="card._id" :close="close"/>
         </v-row>
@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import Api from "../services/Api";
-import PopupConfirm from "../components/PopupConfirm"
+import Api from '../services/Api'
+import PopupConfirm from '../components/PopupConfirm'
 
 export default {
   data () {
@@ -46,23 +46,23 @@ export default {
     PopupConfirm
   },
   computed: {
-    formatDate() {
-      let date = this.card.created_at;
-      return date.split("T")[0];
+    formatDate () {
+      const date = this.card.created_at
+      return date.split('T')[0]
     }
   },
   methods: {
-    erase(article) {
-      Api.deleteArticleById(article).then( response =>  {
-        this.$emit("deleteArticle");
-        this.dialog = false;
-      });
+    erase (article) {
+      Api.deleteArticleById(article).then(response => {
+        this.$emit('deleteArticle')
+        this.dialog = false
+      })
     },
-    update(id) {
-      this.$router.push(`/update/${id}`);
+    update (id) {
+      this.$router.push(`/update/${id}`)
     },
-    ToArticle(id) {
-      this.$router.push(`/article/${id}`);
+    ToArticle (id) {
+      this.$router.push(`/article/${id}`)
     },
     close() {
       this.dialog = false;
@@ -79,7 +79,7 @@ export default {
       })
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

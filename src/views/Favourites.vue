@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import Api from "../services/Api";
-import CardArticle from "../components/CardArticle";
+import Api from '../services/Api'
+import CardArticle from '../components/CardArticle'
 
 export default {
-  name: "Favourites",
-  data() {
+  name: 'Favourites',
+  data () {
     return {
       articles: [],
       status: false,
@@ -25,7 +25,7 @@ export default {
     }
   },
   components: {
-   CardArticle
+    CardArticle
   },
   methods: {
     deleteFavourite(idx) {
@@ -36,12 +36,13 @@ export default {
     if (localStorage.getItem('userType') === 'true') {
       this.status = true
     } else {
-      this.status = false;
+      this.status = false
     }
   },
-  mounted() {
+  mounted () {
     Api.getAllFavourites()
-      .then(articles => this.articles = articles.reverse());
+      // eslint-disable-next-line no-return-assign
+      .then(articles => this.articles = articles.reverse())
   }
-};
+}
 </script>

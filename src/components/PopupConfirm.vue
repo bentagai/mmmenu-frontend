@@ -20,7 +20,7 @@ export default {
     dialog: Boolean,
     close: Function,
     event: Function,
-    id: String 
+    id: String
   }
 }
 </script>

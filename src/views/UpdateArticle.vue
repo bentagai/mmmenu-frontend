@@ -34,14 +34,14 @@ import PopupTime from "../components/PopupTime"
 import firebase from 'firebase'
 
 export default {
-  data() {
+  data () {
     return {
-      title: "",
-      titleRule: [v => !!v || "Title is required"],
-      subtitle: "",
-      subtitleRule: [v => !!v || "Subtitle is required"],
-      items: ["comer", "hacer", "comprar"],
-      category: "",
+      title: '',
+      titleRule: [v => !!v || 'Title is required'],
+      subtitle: '',
+      subtitleRule: [v => !!v || 'Subtitle is required'],
+      items: ['comer', 'hacer', 'comprar'],
+      category: '',
       editor: ClassicEditor,
       text: '<p></p>',
       editorConfig: {},
@@ -55,9 +55,9 @@ export default {
     PopupTime
   },
   watch: {
-    dialog(val) {
-      if (!val) return;
-      setTimeout(() => (this.dialog = false), 1500);
+    dialog (val) {
+      if (!val) return
+      setTimeout(() => (this.dialog = false), 1500)
     }
   },
   methods: {
@@ -93,22 +93,22 @@ export default {
         category: this.category,
         img_url: this.picture,
         text: this.text
-      };
+      }
       Api.updateArticle(this.$route.params.id, article).then(response => {
-        this.dialog = true;
-        setTimeout(() => this.$router.push("/admin"), 1500);
-      });
+        this.dialog = true
+        setTimeout(() => this.$router.push('/admin'), 1500)
+      })
     }
   },
-  mounted() {
+  mounted () {
     Api.getArticleById(this.$route.params.id).then(article => {
-      this.title = article.title;
-      this.subtitle = article.subtitle;
-      this.category = article.category;
-      this.text = article.text;
-    });
+      this.title = article.title
+      this.subtitle = article.subtitle
+      this.category = article.category
+      this.text = article.text
+    })
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

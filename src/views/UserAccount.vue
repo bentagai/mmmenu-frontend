@@ -14,28 +14,28 @@
             <span class="grey--text text--lighten-5">Actualizar Datos</span>
           </v-btn>
         </div>
-        <PopupTime :text="'Actualiando datos'" :dialog="dialog" /> 
+        <PopupTime :text="'Actualiando datos'" :dialog="dialog" />
       </v-card-actions>
     </v-card>
     <v-card outlined tile width="100%" class="grey lighten-3 mt-10">
       <v-card-title class="title font-weight-regular d-flex justify-center">Modificar Contraseña</v-card-title>
       <v-card-text>
         <v-form>
-          <v-text-field 
+          <v-text-field
             label="Current password"
             v-model="password"
             :type="showPassword ? 'text' : 'password'"
             :rules="passwordRule"
             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="showPassword = !showPassword"></v-text-field>
-          <v-text-field 
+          <v-text-field
             label="New password"
             v-model="newPassword"
             :type="showNewPassword ? 'text' : 'password'"
             :rules="passwordRule"
             :append-icon="showNewPassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="showNewPassword = !showNewPassword"></v-text-field>
-          <v-text-field 
+          <v-text-field
             label="Repeat new password"
             v-model="copiedPassword"
             :type="showCopiedPassword ? 'text' : 'password'"
@@ -49,109 +49,108 @@
           <v-btn depressed tile small color="#3B2929" block @click="updatePassword">
             <span class="grey--text text--lighten-5">Actualizar Contraseña</span>
           </v-btn>
-        </div>      
+        </div>
         <div d-block class="mt-1">
           <v-btn depressed tile small color="#3B2929" block @click="userDeleted = true">
             <span class="grey--text text--lighten-5">Eliminar cuenta</span>
           </v-btn>
         </div>
-        <PopupConfirm :text="'Eliminar'" :dialog="userDeleted" :event="deleteUserById" :close="close"/> 
+        <PopupConfirm :text="'Eliminar'" :dialog="userDeleted" :event="deleteUserById" :close="close"/>
       </v-card-actions>
     </v-card>
   </div>
 </template>
 
 <script>
-import Api from "../services/Api";
-import PopupTime from "../components/PopupTime"
-import PopupConfirm from "../components/PopupConfirm"
+import Api from '../services/Api'
+import PopupTime from '../components/PopupTime'
+import PopupConfirm from '../components/PopupConfirm'
 
 export default {
-  data() {
+  data () {
     return {
-      userName: "",
+      userName: '',
       showPassword: false,
       showNewPassword: false,
       shoewCopiedPassword: false,
-      password: "",
-      newPassword: "",
-      copiedPassword:"",
+      password: '',
+      newPassword: '',
+      copiedPassword: '',
       passwordRule: [
-        v => !!v || "Password is required",
-        v => v.length >= 6 || "Password must be more than 5 characters"
+        v => !!v || 'Password is required',
+        v => v.length >= 6 || 'Password must be more than 5 characters'
       ],
-      email: "",
+      email: '',
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
       ],
       dialog: false,
-      userDeleted:false
-    };
+      userDeleted: false
+    }
   },
   components: {
     PopupTime,
     PopupConfirm
   },
   watch: {
-    dialog(val) {
-      if (!val) return;
-      setTimeout(() => (this.dialog = false), 1500);
-      setTimeout(() => (this.userDeleted = false), 1500);
-
+    dialog (val) {
+      if (!val) return
+      setTimeout(() => (this.dialog = false), 1500)
+      setTimeout(() => (this.userDeleted = false), 1500)
     }
   },
   methods: {
-    updateUser() {
+    updateUser () {
       const updUser = {
         name: this.userName,
         email: this.email
-      };
+      }
       Api.updateUser(updUser)
         .then(response => {
-          this.dialog = true;
+          this.dialog = true
           if (response.token) {
-            localStorage.setItem("token", response.token);
+            localStorage.setItem('token', response.token)
           }
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
     },
-    updatePassword() {
-      if(this.newPassword === this.copiedPassword) {
+    updatePassword () {
+      if (this.newPassword === this.copiedPassword) {
         const userPassword = {
           current: this.password,
           new: this.newPassword
         }
         Api.updateUserPassword(userPassword).then(response => {
           alert('Contraseña modificada')
-        });
+        })
       } else {
         alert('contraseñas distintas')
-        this.newPassword = '';
-        this.copiedPassword = '';
-        }
+        this.newPassword = ''
+        this.copiedPassword = ''
+      }
     },
-    deleteUserById() {
+    deleteUserById () {
       Api.deleteUserById()
         .then(response => {
-          localStorage.removeItem("token");
-          localStorage.removeItem("userType");
-          this.$root.$emit("deleted", false)
-          this.$router.push('/');
+          localStorage.removeItem('token')
+          localStorage.removeItem('userType')
+          this.$root.$emit('deleted', false)
+          this.$router.push('/')
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
     },
-    close() {
-      this.userDeleted = false;
-    },
+    close () {
+      this.userDeleted = false
+    }
   },
-  created() {
+  created () {
     Api.getUserById().then(user => {
-      this.userName = user.name;
-      this.email = user.email;
-    });
+      this.userName = user.name
+      this.email = user.email
+    })
   }
-};
+}
 </script>
 
 <style lang="css" scoped>

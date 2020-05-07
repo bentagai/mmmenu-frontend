@@ -12,19 +12,19 @@
 </template>
 
 <script>
-import Api from "../services/Api";
-import CardArticle from "../components/CardArticle";
+import Api from '../services/Api'
+import CardArticle from '../components/CardArticle'
 
 export default {
-  name: "Home",
-  data() {
+  name: 'Home',
+  data () {
     return {
       articles: [],
       status: false
     }
   },
   components: {
-   CardArticle
+    CardArticle
   },
   methods: {
     deleteFavourite(idx) {
@@ -38,11 +38,11 @@ export default {
     if (localStorage.getItem('userType') === 'true') {
       this.status = true
     } else {
-      this.status = false;
+      this.status = false
     }
     
   },
-  mounted() {
+  mounted () {
     Api.getAllArticles()
       .then(articles => {
         articles.forEach(article => article.isFavourite = false)
@@ -59,5 +59,5 @@ export default {
           })
       });
   }
-};
+}
 </script>

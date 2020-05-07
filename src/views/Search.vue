@@ -13,39 +13,40 @@
 </template>
 
 <script>
-import Api from "../services/Api";
-import CardArticle from "../components/CardArticle";
+import Api from '../services/Api'
+import CardArticle from '../components/CardArticle'
 
 export default {
-  name: "Search",
-  data() {
+  name: 'Search',
+  data () {
     return {
       articles: [],
       status: false,
-      mainTitle: ""
+      mainTitle: ''
     }
   },
   components: {
-   CardArticle
+    CardArticle
   },
-  created() {
+  created () {
     if (localStorage.getItem('userType') === 'true') {
       this.status = true
     } else {
-      this.status = false;
+      this.status = false
     }
-    this.$root.$on("myQuery", query => {
-      this.mainTitle = query;
-      this.find(query);
+    this.$root.$on('myQuery', query => {
+      this.mainTitle = query
+      this.find(query)
     })
-    this.mainTitle = this.$route.params.query;
-    this.find(this.$route.params.query);
+    this.mainTitle = this.$route.params.query
+    this.find(this.$route.params.query)
   },
   methods: {
-    find(query) {
+    find (query) {
       Api.getArticlesByCategory(query)
-        .then(articles => this.articles = articles.reverse());
+        // eslint-disable-next-line no-return-assign
+        .then(articles => this.articles = articles.reverse())
     }
   }
-};
+}
 </script>
