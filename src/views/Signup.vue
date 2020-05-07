@@ -54,7 +54,8 @@ export default {
       Api.signup(newUser)
         .then(response => {
           localStorage.setItem('token', response.token)
-          this.$root.$emit('log', true)
+          localStorage.setItem('userType', response.is_admin)
+          this.$root.$emit('log', response.is_admin)
           this.$router.push('/')
         })
         .catch(err => console.log(err))

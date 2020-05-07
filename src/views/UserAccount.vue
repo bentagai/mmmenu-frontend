@@ -72,7 +72,7 @@ export default {
       userName: '',
       showPassword: false,
       showNewPassword: false,
-      shoewCopiedPassword: false,
+      showCopiedPassword: false,
       password: '',
       newPassword: '',
       copiedPassword: '',

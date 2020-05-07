@@ -6,7 +6,7 @@
       </v-btn>
     </div>
     <v-container class="pb-10">
-      <v-img :src="article.img_url[0]" />
+      <v-img :src="article.img_url" />
       <h1 class="display-1 font-regular mb-2 mt-10">{{article.title}}</h1>
       <h2 class="headline font-weight-regular mb-2">{{article.subtitle}}</h2>
       <h2 class="subtitle-2 font-weight-regular mb-10">{{formatDate}}</h2>

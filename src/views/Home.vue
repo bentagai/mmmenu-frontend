@@ -27,24 +27,24 @@ export default {
     CardArticle
   },
   methods: {
-    deleteFavourite(idx) {
+    deleteFavourite (idx) {
       this.articles[idx].isFavourite = false;
     },
-    added(idx) {
+    added (idx) {
       this.articles[idx].isFavourite = true;
     }
   },
-  created() {
+  created () {
     if (localStorage.getItem('userType') === 'true') {
       this.status = true
     } else {
       this.status = false
     }
-    
   },
   mounted () {
     Api.getAllArticles()
       .then(articles => {
+        // eslint-disable-next-line no-return-assign
         articles.forEach(article => article.isFavourite = false)
         this.articles = articles.reverse()
 
