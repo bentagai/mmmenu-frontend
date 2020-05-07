@@ -1,12 +1,10 @@
 <template>
   <div>
-    <v-btn depressed tile small color="#3B2929" block @click="toCreate">
-      <span class="grey--text text--lighten-5">Crear artículo</span>
-    </v-btn>
+    <div class="title font-weight-regular d-flex justify-center">Mis Favoritos</div>
     <v-container class="container">
       <v-row dense>
         <v-col md="6" sm="6" xs="12" v-for="(article, idx) in articles" :key="idx">
-          <CardArticle :card="article" @deleteArticle="deleteArticle(idx)" :user="status" />
+          <CardArticle :card="article" :user="status" @deleteFavourite="deleteFavourite(idx)" :add="add"/>
         </v-col>
       </v-row>
     </v-container>
@@ -18,20 +16,19 @@ import Api from '../services/Api'
 import CardArticle from '../components/CardArticle'
 
 export default {
+  name: 'Favourites',
   data () {
     return {
       articles: [],
-      status: true
+      status: false,
+      add: true
     }
   },
   components: {
     CardArticle
   },
   methods: {
-    toCreate () {
-      this.$router.push('/create')
-    },
-    deleteArticle (idx) {
+    deleteFavourite (idx) {
       this.articles.splice(idx, 1)
     }
   },
@@ -43,13 +40,9 @@ export default {
     }
   },
   mounted () {
-    Api.getAllArticles().then(articles => (this.articles = articles.reverse()))
+    Api.getAllFavourites()
+      // eslint-disable-next-line no-return-assign
+      .then(articles => this.articles = articles.reverse())
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.container {
-  padding: 12px 6px 0 6px;
-}
-</style>

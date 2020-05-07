@@ -35,7 +35,7 @@ export default {
       userPassword: '',
       passwordRule: [
         v => !!v || 'Password is required',
-        v => v.length >= 6 || 'Password must be more than 10 characters'
+        v => v.length >= 6 || 'Password must be more than 5 characters'
       ],
       email: '',
       emailRules: [
@@ -54,8 +54,9 @@ export default {
       Api.signup(newUser)
         .then(response => {
           localStorage.setItem('token', response.token)
-          this.$root.$emit('log', true)
-          this.$router.push('/admin')
+          localStorage.setItem('userType', response.is_admin)
+          this.$root.$emit('log', response.is_admin)
+          this.$router.push('/')
         })
         .catch(err => console.log(err))
     }
